@@ -4,6 +4,8 @@
  */
 package miniproyectopoo;
 
+import javax.swing.JTable;
+
 /**
  *
  * @author luisc
@@ -14,9 +16,13 @@ public class TablaContactos extends javax.swing.JPanel {
      * Creates new form TablaContactos
      */
     public TablaContactos() {
+        
         initComponents();
     }
 
+    public JTable getTabla(){
+        return jTable1;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -34,7 +40,7 @@ public class TablaContactos extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Icono", "Nombre", "Apellido", "Telefono", "Direccion", "Correo Electronico", "Estado Civil"
+                "Nombre", "Apellido", "Telefono", "Direccion", "Correo Electronico", "Estado Civil", "Icono"
             }
         ) {
             boolean[] canEdit = new boolean [] {

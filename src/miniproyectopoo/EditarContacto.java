@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 public class EditarContacto extends javax.swing.JPanel {
     private JPanel panelContenedor2;
     private VentanaPrincipal ventanaPrincipal;
+    private TablaContactos tablaContactos;
     /**
      * Creates new form EditarContacto
      */

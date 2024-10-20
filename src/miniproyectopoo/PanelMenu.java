@@ -5,19 +5,22 @@
 package miniproyectopoo;
 
 import java.awt.BorderLayout;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author luisc
  */
 public class PanelMenu extends javax.swing.JPanel {
-private VentanaPrincipal ventanaPrincipal;
+
+    private VentanaPrincipal ventanaPrincipal;
 
     /**
      * Creates new form PanelMenu
      */
     public PanelMenu(VentanaPrincipal ventanaPrincipal) {
         this.ventanaPrincipal = ventanaPrincipal;
+
         initComponents();
     }
 
@@ -121,10 +124,12 @@ private VentanaPrincipal ventanaPrincipal;
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonAgregarContactoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarContactoActionPerformed
-        AgregarContacto agregarContacto = new AgregarContacto(ventanaPrincipal,ventanaPrincipal.getPanelContenedor2());
+
+        DefaultTableModel modelo = (DefaultTableModel) ventanaPrincipal.getTablaContactos().getModel();
+        AgregarContacto agregarContacto = new AgregarContacto(ventanaPrincipal, ventanaPrincipal.getPanelContenedor2(), modelo);
         ventanaPrincipal.cambiarPanelContenedor2(agregarContacto);
-        
-        
+
+
     }//GEN-LAST:event_botonAgregarContactoActionPerformed
 
     private void botonEditarContactoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarContactoActionPerformed
@@ -133,14 +138,14 @@ private VentanaPrincipal ventanaPrincipal;
     }//GEN-LAST:event_botonEditarContactoActionPerformed
 
     private void botonEliminarContactoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarContactoActionPerformed
-        EliminarContacto eliminarContacto = new EliminarContacto(ventanaPrincipal,ventanaPrincipal.getPanelContenedor2());
+        EliminarContacto eliminarContacto = new EliminarContacto(ventanaPrincipal, ventanaPrincipal.getPanelContenedor2());
         ventanaPrincipal.cambiarPanelContenedor2(eliminarContacto);
     }//GEN-LAST:event_botonEliminarContactoActionPerformed
 
     private void botonBuscarContactoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarContactoActionPerformed
-        BuscarContacto buscarContacto = new BuscarContacto(ventanaPrincipal,ventanaPrincipal.getPanelContenedor2());
+        BuscarContacto buscarContacto = new BuscarContacto(ventanaPrincipal, ventanaPrincipal.getPanelContenedor2());
         ventanaPrincipal.cambiarPanelContenedor2(buscarContacto);
-        
+
     }//GEN-LAST:event_botonBuscarContactoActionPerformed
 
 

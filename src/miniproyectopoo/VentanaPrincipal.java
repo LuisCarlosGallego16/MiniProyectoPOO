@@ -6,44 +6,47 @@ package miniproyectopoo;
 
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author luisc
  */
-public class VentanaPrincipal extends javax.swing.JFrame {
-    
-    /**
-     * Creates new form VentanaPrincipal
-     */
-    public VentanaPrincipal() {
-        initComponents();
-        TablaContactos tablaContactos = new TablaContactos();
-        PanelContenedor1.removeAll();
-        PanelContenedor1.setLayout(new BorderLayout());
-        PanelContenedor1.add(tablaContactos);
-        PanelContenedor1.revalidate();
-        PanelContenedor1.repaint();
-        
-       PanelMenu panelMenu = new PanelMenu(this);
-       PanelContenedor2.removeAll();
-       PanelContenedor2.setLayout(new BorderLayout());
-       PanelContenedor2.add(panelMenu);
-       PanelContenedor2.revalidate();
-       PanelContenedor2.repaint();
-    }
-    
-    
-    public void cambiarPanelContenedor2(JPanel nuevoPanel){
-        PanelContenedor2.removeAll(); // Quitar el contenido actual
-        PanelContenedor2.setLayout(new BorderLayout()); // Establecer un nuevo layout
-        PanelContenedor2.add(nuevoPanel); // Añadir el nuevo panel
-        PanelContenedor2.revalidate(); // Validar cambios
-        PanelContenedor2.repaint(); // Repintar para ver los cambios
-    }
-    public JPanel getPanelContenedor2(){
-        return PanelContenedor2;
-    }
+    public class VentanaPrincipal extends javax.swing.JFrame {
+
+        private TablaContactos tablaContactos;
+        private DefaultTableModel modelo;
+
+        public VentanaPrincipal() {
+            initComponents();
+            tablaContactos = new TablaContactos();
+            modelo = (DefaultTableModel) tablaContactos.getTabla().getModel();
+            PanelContenedor1.removeAll();
+            PanelContenedor1.setLayout(new BorderLayout());
+            PanelContenedor1.add(tablaContactos);
+            PanelContenedor1.revalidate();
+            PanelContenedor1.repaint();
+
+            PanelMenu panelMenu = new PanelMenu(this);
+            cambiarPanelContenedor2(panelMenu);
+        }
+
+        public void cambiarPanelContenedor2(JPanel nuevoPanel) {
+            PanelContenedor2.removeAll(); // Quitar el contenido actual
+            PanelContenedor2.setLayout(new BorderLayout()); // Establecer un nuevo layout
+            PanelContenedor2.add(nuevoPanel); // Añadir el nuevo panel
+            PanelContenedor2.revalidate(); // Validar cambios
+            PanelContenedor2.repaint(); // Repintar para ver los cambios
+        }
+
+        public JPanel getPanelContenedor2() {
+            return PanelContenedor2;
+        }
+
+        public JTable getTablaContactos() {
+            return tablaContactos.getTabla();
+        }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -61,7 +64,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         menuItemAtajos = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(800, 600));
 
         javax.swing.GroupLayout PanelContenedor1Layout = new javax.swing.GroupLayout(PanelContenedor1);
         PanelContenedor1.setLayout(PanelContenedor1Layout);
@@ -89,12 +91,22 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         menuItemNuevo.setText("Nuevo");
         menuItemNuevo.setToolTipText("");
+        menuItemNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemNuevoActionPerformed(evt);
+            }
+        });
         menuArchivo.add(menuItemNuevo);
 
         menuItemGuardar.setText("Guardar");
         menuArchivo.add(menuItemGuardar);
 
         menuItemSalir.setText("Salir");
+        menuItemSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemSalirActionPerformed(evt);
+            }
+        });
         menuArchivo.add(menuItemSalir);
 
         jMenuBar1.add(menuArchivo);
@@ -129,6 +141,21 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void menuItemNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemNuevoActionPerformed
+        DefaultTableModel modelo = (DefaultTableModel) tablaContactos.getTabla().getModel();
+        AgregarContacto agregarContacto = new AgregarContacto(this, getPanelContenedor2(), modelo);
+
+        cambiarPanelContenedor2(agregarContacto);
+    }//GEN-LAST:event_menuItemNuevoActionPerformed
+
+    private void menuItemSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemSalirActionPerformed
+        PanelMenu panelMenu = new PanelMenu(this);
+        getPanelContenedor2().removeAll();
+        getPanelContenedor2().add(panelMenu);
+        getPanelContenedor2().revalidate();
+        getPanelContenedor2().repaint();
+    }//GEN-LAST:event_menuItemSalirActionPerformed
 
     /**
      * @param args the command line arguments
