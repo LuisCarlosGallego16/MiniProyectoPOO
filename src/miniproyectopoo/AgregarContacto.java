@@ -1,6 +1,7 @@
 package miniproyectopoo;
 
-import java.util.HashSet;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -27,8 +28,49 @@ public class AgregarContacto extends javax.swing.JPanel {
         grupoBotones.add(radioBotonCasado);
         grupoBotones.add(radioBotonUnionLibre);
         grupoBotones.add(radioBotonDivorciado);
+        configurarActionListeners();
+        setFocusable(true);
+        requestFocusInWindow();
 
     }
+    
+    private void configurarActionListeners() {
+    campoNombre.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            botonGuardarActionPerformed(evt);
+        }
+    });
+
+    campoApellido.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            botonGuardarActionPerformed(evt);
+        }
+    });
+
+    campoTelefono.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            botonGuardarActionPerformed(evt);
+        }
+    });
+
+    campoCorreoElectronico.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            botonGuardarActionPerformed(evt);
+        }
+    });
+
+    campoDireccion.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            botonGuardarActionPerformed(evt);
+        }
+    });
+
+    campoImagen.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            botonGuardarActionPerformed(evt);
+        }
+    });
+}
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -56,6 +98,12 @@ public class AgregarContacto extends javax.swing.JPanel {
         radioBotonDivorciado = new javax.swing.JRadioButton();
         campoImagen = new javax.swing.JTextField();
 
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
+
         etiquetaTitulo.setText("AGREGAR CONTACTO");
 
         etiquetaNombre.setText("NOMBRE:");
@@ -71,6 +119,7 @@ public class AgregarContacto extends javax.swing.JPanel {
         etiquetaEstadoCivil.setText("ESTADO CIVIL:");
 
         botonGuardar.setText("GUARDAR");
+        botonGuardar.setFocusable(false);
         botonGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonGuardarActionPerformed(evt);
@@ -78,8 +127,15 @@ public class AgregarContacto extends javax.swing.JPanel {
         });
 
         botonCancelar.setText("CANCELAR");
+        botonCancelar.setFocusable(false);
+        botonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCancelarActionPerformed(evt);
+            }
+        });
 
         botonMenu.setText("MENU");
+        botonMenu.setFocusable(false);
         botonMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonMenuActionPerformed(evt);
@@ -89,12 +145,16 @@ public class AgregarContacto extends javax.swing.JPanel {
         etiquetaIcono.setText("ICONO:");
 
         radioBotonSoltero.setText("SOLTERO");
+        radioBotonSoltero.setFocusable(false);
 
         radioBotonCasado.setText("CASADO");
+        radioBotonCasado.setFocusable(false);
 
         radioBotonUnionLibre.setText("UNION LIBRE");
+        radioBotonUnionLibre.setFocusable(false);
 
         radioBotonDivorciado.setText("DIVORCIADO");
+        radioBotonDivorciado.setFocusable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -192,17 +252,8 @@ public class AgregarContacto extends javax.swing.JPanel {
                 .addGap(15, 15, 15))
         );
     }// </editor-fold>//GEN-END:initComponents
+   //GETTERS PARA OBTENER LA INFORMACION DE LOS CAMPOS DE TEXTFIEL
 
-    private void botonMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMenuActionPerformed
-        PanelMenu panelMenu = new PanelMenu(ventanaPrincipal);
-        panelContenedor2.removeAll();
-        panelContenedor2.add(panelMenu);
-        panelContenedor2.revalidate();
-        panelContenedor2.repaint();
-
-    }//GEN-LAST:event_botonMenuActionPerformed
-
-    //GETTERS PARA OBTENER LA INFORMACION DE LOS CAMPOS DE TEXTFIEL
     public String getCampoApellido() {
         return campoApellido.getText();
     }
@@ -266,16 +317,24 @@ public class AgregarContacto extends javax.swing.JPanel {
     public void setCampoImagen(String imagen) {
         campoImagen.setText(imagen);
     }
-    
-    public void limpiarBotones(){
+
+    public void limpiarBotones() {
         grupoBotones.clearSelection();
     }
 
+//////////////////////////
+    private void botonMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMenuActionPerformed
+        PanelMenu panelMenu = new PanelMenu(ventanaPrincipal);
+        panelContenedor2.removeAll();
+        panelContenedor2.add(panelMenu);
+        panelContenedor2.revalidate();
+        panelContenedor2.repaint();
+
+    }//GEN-LAST:event_botonMenuActionPerformed
 
     private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
         DefaultTableModel modelo = (DefaultTableModel) ventanaPrincipal.getTablaContactos().getModel();
         String nombre = getCampoNombre();
-        System.out.println("EL NOMBRE ES:" + nombre);
         String apellido = getCampoApellido();
         String telefono = getCampoTelefono();
         String direccion = getCampoDireccion();
@@ -302,6 +361,27 @@ public class AgregarContacto extends javax.swing.JPanel {
         campoImagen.setText("");
         grupoBotones.clearSelection();
     }//GEN-LAST:event_botonGuardarActionPerformed
+
+    private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
+        int confirmacion = JOptionPane.showConfirmDialog(panelContenedor2, "ESTAS SEGURO DE CANCELAR", "CONFIRMACION", JOptionPane.YES_NO_OPTION);
+        if (confirmacion == JOptionPane.YES_OPTION) {
+            campoNombre.setText("");
+            campoApellido.setText("");
+            campoTelefono.setText("");
+            campoDireccion.setText("");
+            campoCorreoElectronico.setText("");
+            campoImagen.setText("");
+            grupoBotones.clearSelection();
+        } else {
+            JOptionPane.showMessageDialog(panelContenedor2, "SIGUE AGREGANDO CONTACTOS");
+        }
+    }//GEN-LAST:event_botonCancelarActionPerformed
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+        botonGuardarActionPerformed(null); 
+    }
+    }//GEN-LAST:event_formKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

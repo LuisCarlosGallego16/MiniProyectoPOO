@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+  <Events>
+    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="formKeyPressed"/>
+  </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -171,6 +174,7 @@
     <Component class="javax.swing.JButton" name="botonGuardar">
       <Properties>
         <Property name="text" type="java.lang.String" value="GUARDAR"/>
+        <Property name="focusable" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonGuardarActionPerformed"/>
@@ -179,11 +183,16 @@
     <Component class="javax.swing.JButton" name="botonCancelar">
       <Properties>
         <Property name="text" type="java.lang.String" value="CANCELAR"/>
+        <Property name="focusable" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonCancelarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="botonMenu">
       <Properties>
         <Property name="text" type="java.lang.String" value="MENU"/>
+        <Property name="focusable" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonMenuActionPerformed"/>
@@ -207,21 +216,25 @@
     <Component class="javax.swing.JRadioButton" name="radioBotonSoltero">
       <Properties>
         <Property name="text" type="java.lang.String" value="SOLTERO"/>
+        <Property name="focusable" type="boolean" value="false"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JRadioButton" name="radioBotonCasado">
       <Properties>
         <Property name="text" type="java.lang.String" value="CASADO"/>
+        <Property name="focusable" type="boolean" value="false"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JRadioButton" name="radioBotonUnionLibre">
       <Properties>
         <Property name="text" type="java.lang.String" value="UNION LIBRE"/>
+        <Property name="focusable" type="boolean" value="false"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JRadioButton" name="radioBotonDivorciado">
       <Properties>
         <Property name="text" type="java.lang.String" value="DIVORCIADO"/>
+        <Property name="focusable" type="boolean" value="false"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="campoImagen">

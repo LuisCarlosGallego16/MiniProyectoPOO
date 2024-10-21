@@ -14,6 +14,8 @@ import javax.swing.table.DefaultTableModel;
 public class PanelMenu extends javax.swing.JPanel {
 
     private VentanaPrincipal ventanaPrincipal;
+    private AgregarContacto agregarContacto;
+    private DefaultTableModel modelo;
 
     /**
      * Creates new form PanelMenu
@@ -124,12 +126,11 @@ public class PanelMenu extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonAgregarContactoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarContactoActionPerformed
-
-        DefaultTableModel modelo = (DefaultTableModel) ventanaPrincipal.getTablaContactos().getModel();
-        AgregarContacto agregarContacto = new AgregarContacto(ventanaPrincipal, ventanaPrincipal.getPanelContenedor2(), modelo);
-        ventanaPrincipal.cambiarPanelContenedor2(agregarContacto);
-
-
+    // Validación para usar la misma instancia
+    if (ventanaPrincipal.agregarContacto == null) {
+        ventanaPrincipal.agregarContacto = new AgregarContacto(ventanaPrincipal, ventanaPrincipal.getPanelContenedor2(), modelo);
+    }
+    ventanaPrincipal.cambiarPanelContenedor2(ventanaPrincipal.agregarContacto);
     }//GEN-LAST:event_botonAgregarContactoActionPerformed
 
     private void botonEditarContactoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarContactoActionPerformed

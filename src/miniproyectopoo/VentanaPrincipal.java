@@ -5,6 +5,8 @@
 package miniproyectopoo;
 
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
@@ -17,8 +19,8 @@ import javax.swing.table.DefaultTableModel;
 public class VentanaPrincipal extends javax.swing.JFrame {
 
     private TablaContactos tablaContactos;
-    private DefaultTableModel modelo;
-    private AgregarContacto agregarContacto;
+    protected DefaultTableModel modelo;
+    protected AgregarContacto agregarContacto;
 
     public VentanaPrincipal() {
         initComponents();
@@ -32,8 +34,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         PanelContenedor1.repaint();
 
         PanelMenu panelMenu = new PanelMenu(this);
+
         cambiarPanelContenedor2(panelMenu);
+        
     }
+ public AgregarContacto getAgregarContacto() {
+    return agregarContacto;
+
+    }
+ 
 
     public void cambiarPanelContenedor2(JPanel nuevoPanel) {
         PanelContenedor2.removeAll(); // Quitar el contenido actual
@@ -41,6 +50,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         PanelContenedor2.add(nuevoPanel); // Añadir el nuevo panel
         PanelContenedor2.revalidate(); // Validar cambios
         PanelContenedor2.repaint(); // Repintar para ver los cambios
+        nuevoPanel.setFocusable(true);
+
     }
 
     public JPanel getPanelContenedor2() {
@@ -123,9 +134,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         menuItemAcerdaDe.setText("Acerca de");
         menuItemAcerdaDe.setToolTipText("");
+        menuItemAcerdaDe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemAcerdaDeActionPerformed(evt);
+            }
+        });
         menuAyuda.add(menuItemAcerdaDe);
 
         menuItemAtajos.setText("Atajos");
+        menuItemAtajos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemAtajosActionPerformed(evt);
+            }
+        });
         menuAyuda.add(menuItemAtajos);
 
         jMenuBar1.add(menuAyuda);
@@ -167,8 +188,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_menuItemSalirActionPerformed
 
     private void menuItemGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemGuardarActionPerformed
-        DefaultTableModel modelo = (DefaultTableModel) getTablaContactos().getModel();
+       DefaultTableModel modelo = (DefaultTableModel) getTablaContactos().getModel();
         String nombre = agregarContacto.getCampoNombre();
+        System.out.println("NOMBRE"+nombre);
         String apellido = agregarContacto.getCampoApellido();
         String telefono = agregarContacto.getCampoTelefono();
         String direccion = agregarContacto.getCampoDireccion();
@@ -195,7 +217,29 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         agregarContacto.setCampoImagen("");
         agregarContacto.limpiarBotones();
 
+              
+
     }//GEN-LAST:event_menuItemGuardarActionPerformed
+
+    private void menuItemAcerdaDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemAcerdaDeActionPerformed
+        String mensajeAyuda = "AGREGAR: Opcion que te permite crear y agregar un nuevo contacto\n"
+                + "EDITAR: Opcion que te permite seleccionar un contacto y editar su informacion"
+                + "\n"
+                + "ELIMINAR: Opcion que te permite seleccionar un contacto y eliminarlo definitavente"
+                + "\n"
+                + "BUSCAR: Opcion que te permite buscar un contacto con su nombre o numero telefonico";
+        JOptionPane.showMessageDialog(this, mensajeAyuda, "GUIA", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_menuItemAcerdaDeActionPerformed
+
+    private void menuItemAtajosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemAtajosActionPerformed
+        String atajos = "TECLA N: Permite abrir formulario para agregar un nuevo contacto\n"
+                + "TECLA E: Permite editar un contacto seleccionado de la tabla "
+                + "\n"
+                + "TECLA D: Permite eliminar un contacto seleccionado de la tabla"
+                + "\n"
+                + "TECLA ENTER: Guardar un nuevo contacto o cambios realizados a un contacto";
+        JOptionPane.showMessageDialog(this, atajos, "ATAJOS", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_menuItemAtajosActionPerformed
 
     /**
      * @param args the command line arguments

@@ -46,11 +46,17 @@
                 <Property name="text" type="java.lang.String" value="Acerca de"/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemAcerdaDeActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuItemAtajos">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Atajos"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemAtajosActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
