@@ -5,6 +5,7 @@
 package miniproyectopoo;
 
 import java.awt.BorderLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -13,40 +14,42 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author luisc
  */
-    public class VentanaPrincipal extends javax.swing.JFrame {
+public class VentanaPrincipal extends javax.swing.JFrame {
 
-        private TablaContactos tablaContactos;
-        private DefaultTableModel modelo;
+    private TablaContactos tablaContactos;
+    private DefaultTableModel modelo;
+    private AgregarContacto agregarContacto;
 
-        public VentanaPrincipal() {
-            initComponents();
-            tablaContactos = new TablaContactos();
-            modelo = (DefaultTableModel) tablaContactos.getTabla().getModel();
-            PanelContenedor1.removeAll();
-            PanelContenedor1.setLayout(new BorderLayout());
-            PanelContenedor1.add(tablaContactos);
-            PanelContenedor1.revalidate();
-            PanelContenedor1.repaint();
+    public VentanaPrincipal() {
+        initComponents();
+        agregarContacto = new AgregarContacto(this, getPanelContenedor2(), modelo);
+        tablaContactos = new TablaContactos();
+        modelo = (DefaultTableModel) getTablaContactos().getModel();
+        PanelContenedor1.removeAll();
+        PanelContenedor1.setLayout(new BorderLayout());
+        PanelContenedor1.add(tablaContactos);
+        PanelContenedor1.revalidate();
+        PanelContenedor1.repaint();
 
-            PanelMenu panelMenu = new PanelMenu(this);
-            cambiarPanelContenedor2(panelMenu);
-        }
+        PanelMenu panelMenu = new PanelMenu(this);
+        cambiarPanelContenedor2(panelMenu);
+    }
 
-        public void cambiarPanelContenedor2(JPanel nuevoPanel) {
-            PanelContenedor2.removeAll(); // Quitar el contenido actual
-            PanelContenedor2.setLayout(new BorderLayout()); // Establecer un nuevo layout
-            PanelContenedor2.add(nuevoPanel); // Añadir el nuevo panel
-            PanelContenedor2.revalidate(); // Validar cambios
-            PanelContenedor2.repaint(); // Repintar para ver los cambios
-        }
+    public void cambiarPanelContenedor2(JPanel nuevoPanel) {
+        PanelContenedor2.removeAll(); // Quitar el contenido actual
+        PanelContenedor2.setLayout(new BorderLayout()); // Establecer un nuevo layout
+        PanelContenedor2.add(nuevoPanel); // Añadir el nuevo panel
+        PanelContenedor2.revalidate(); // Validar cambios
+        PanelContenedor2.repaint(); // Repintar para ver los cambios
+    }
 
-        public JPanel getPanelContenedor2() {
-            return PanelContenedor2;
-        }
+    public JPanel getPanelContenedor2() {
+        return PanelContenedor2;
+    }
 
-        public JTable getTablaContactos() {
-            return tablaContactos.getTabla();
-        }
+    public JTable getTablaContactos() {
+        return tablaContactos.getTabla();
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -99,6 +102,11 @@ import javax.swing.table.DefaultTableModel;
         menuArchivo.add(menuItemNuevo);
 
         menuItemGuardar.setText("Guardar");
+        menuItemGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemGuardarActionPerformed(evt);
+            }
+        });
         menuArchivo.add(menuItemGuardar);
 
         menuItemSalir.setText("Salir");
@@ -143,9 +151,10 @@ import javax.swing.table.DefaultTableModel;
     }// </editor-fold>//GEN-END:initComponents
 
     private void menuItemNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemNuevoActionPerformed
-        DefaultTableModel modelo = (DefaultTableModel) tablaContactos.getTabla().getModel();
-        AgregarContacto agregarContacto = new AgregarContacto(this, getPanelContenedor2(), modelo);
-
+        //VALIDACION PARA QUE SIEMPRE SE MANEJE LA MISMA INSTANCIA 
+        if (agregarContacto == null) {
+            agregarContacto = new AgregarContacto(this, getPanelContenedor2(), modelo);
+        }
         cambiarPanelContenedor2(agregarContacto);
     }//GEN-LAST:event_menuItemNuevoActionPerformed
 
@@ -156,6 +165,37 @@ import javax.swing.table.DefaultTableModel;
         getPanelContenedor2().revalidate();
         getPanelContenedor2().repaint();
     }//GEN-LAST:event_menuItemSalirActionPerformed
+
+    private void menuItemGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemGuardarActionPerformed
+        DefaultTableModel modelo = (DefaultTableModel) getTablaContactos().getModel();
+        String nombre = agregarContacto.getCampoNombre();
+        String apellido = agregarContacto.getCampoApellido();
+        String telefono = agregarContacto.getCampoTelefono();
+        String direccion = agregarContacto.getCampoDireccion();
+        String correoElectronico = agregarContacto.getCampoCorreoElectronico();
+        String icono = agregarContacto.getCampoImagen();
+        String estadoCivil = "";
+        if (agregarContacto.getRadioBotonSoltero().isSelected()) {
+            estadoCivil = "Soltero";
+        } else if (agregarContacto.getRadioBotonCasado().isSelected()) {
+            estadoCivil = "Casado";
+        } else if (agregarContacto.getRadioBotonUnionLibre().isSelected()) {
+            estadoCivil = "Union Libre";
+        } else if (agregarContacto.getRadioBotonDivorciado().isSelected()) {
+            estadoCivil = "Divorciado";
+        }
+        Object[] nuevaFila = {nombre, apellido, telefono, direccion, correoElectronico, estadoCivil, icono};
+        modelo.addRow(nuevaFila);
+
+        agregarContacto.setCampoNombre("");
+        agregarContacto.setCampoApellido("");
+        agregarContacto.setCampoTelefono("");
+        agregarContacto.setCampoDireccion("");
+        agregarContacto.setCampoCorreoElectronico("");
+        agregarContacto.setCampoImagen("");
+        agregarContacto.limpiarBotones();
+
+    }//GEN-LAST:event_menuItemGuardarActionPerformed
 
     /**
      * @param args the command line arguments

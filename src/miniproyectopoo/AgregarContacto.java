@@ -1,11 +1,15 @@
 package miniproyectopoo;
 
+import java.util.HashSet;
 import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-    public class AgregarContacto extends javax.swing.JPanel {
+public class AgregarContacto extends javax.swing.JPanel {
+
     private ButtonGroup grupoBotones;
     private JPanel panelContenedor2;
     private VentanaPrincipal ventanaPrincipal;
@@ -196,64 +200,107 @@ import javax.swing.table.DefaultTableModel;
         panelContenedor2.revalidate();
         panelContenedor2.repaint();
 
-
     }//GEN-LAST:event_botonMenuActionPerformed
 
+    //GETTERS PARA OBTENER LA INFORMACION DE LOS CAMPOS DE TEXTFIEL
+    public String getCampoApellido() {
+        return campoApellido.getText();
+    }
+
+    public String getCampoCorreoElectronico() {
+        return campoCorreoElectronico.getText();
+    }
+
+    public String getCampoDireccion() {
+        return campoDireccion.getText();
+    }
+
+    public String getCampoImagen() {
+        return campoImagen.getText();
+    }
+
+    public String getCampoNombre() {
+        return campoNombre.getText();
+    }
+
+    public String getCampoTelefono() {
+        return campoTelefono.getText();
+    }
+
+    public JRadioButton getRadioBotonCasado() {
+        return radioBotonCasado;
+    }
+
+    public JRadioButton getRadioBotonDivorciado() {
+        return radioBotonDivorciado;
+    }
+
+    public JRadioButton getRadioBotonSoltero() {
+        return radioBotonSoltero;
+    }
+
+    public JRadioButton getRadioBotonUnionLibre() {
+        return radioBotonUnionLibre;
+    }
+
+    public void setCampoNombre(String nombre) {
+        campoNombre.setText(nombre);
+    }
+
+    public void setCampoApellido(String apellido) {
+        campoApellido.setText(apellido);
+    }
+
+    public void setCampoTelefono(String telefono) {
+        campoTelefono.setText(telefono);
+    }
+
+    public void setCampoDireccion(String direccion) {
+        campoDireccion.setText(direccion);
+    }
+
+    public void setCampoCorreoElectronico(String correo) {
+        campoCorreoElectronico.setText(correo);
+    }
+
+    public void setCampoImagen(String imagen) {
+        campoImagen.setText(imagen);
+    }
+    
+    public void limpiarBotones(){
+        grupoBotones.clearSelection();
+    }
+
+
     private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
-     // Obtiene el modelo de la tabla
-    DefaultTableModel modelo = (DefaultTableModel) ventanaPrincipal.getTablaContactos().getModel();
-
-    // Verifica si el modelo es null
-    if (modelo == null) {
-        System.out.println("El modelo de la tabla es null");
-        return; // Salir del método si el modelo es null
-    }
-
-    // Obtiene los datos de los campos de texto
-    String nombre = campoNombre.getText();
-    String apellido = campoApellido.getText();
-    String telefono = campoTelefono.getText();
-    String direccion = campoDireccion.getText();
-    String correoElectronico = campoCorreoElectronico.getText();
-
-    // Validación de los campos
-    if (nombre.isEmpty() || apellido.isEmpty() || telefono.isEmpty() || direccion.isEmpty() || correoElectronico.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Campos vacíos", JOptionPane.WARNING_MESSAGE);
-        return; // Salir si hay campos vacíos
-    }
-
-    // Verifica cuál radio button está seleccionado
-    String estadoCivil = "";
-    if (radioBotonSoltero.isSelected()) {
-        estadoCivil = "Soltero";
-    } else if (radioBotonCasado.isSelected()) {
-        estadoCivil = "Casado";
-    } else if (radioBotonUnionLibre.isSelected()) {
-        estadoCivil = "Unión Libre";
-    } else if (radioBotonDivorciado.isSelected()) {
-        estadoCivil = "Divorciado";
-    } else {
-        JOptionPane.showMessageDialog(this, "Por favor, seleccione un estado civil.", "Estado civil no seleccionado", JOptionPane.WARNING_MESSAGE);
-        return; // Salir si no se ha seleccionado ningún estado civil
-    }
-
-    // Obtiene el valor del campo de imagen
-    String icono = campoImagen.getText();
-
-    // Crea un nuevo array con los datos a agregar
-    Object[] nuevaFila = {nombre, apellido, telefono, direccion, correoElectronico, estadoCivil, icono};
-
-    // Agrega la nueva fila al modelo de la tabla
-    modelo.addRow(nuevaFila);
-
-    // Limpia los campos después de agregar el contacto
-    campoNombre.setText("");
-    campoApellido.setText("");
-    campoDireccion.setText("");
-    campoTelefono.setText("");
-    campoCorreoElectronico.setText("");
-    campoImagen.setText(""); // Asegúrate de limpiar también el campo de imagen
-    grupoBotones.clearSelection(); // Limpia la selección de los radio buttons
+        DefaultTableModel modelo = (DefaultTableModel) ventanaPrincipal.getTablaContactos().getModel();
+        String nombre = getCampoNombre();
+        System.out.println("EL NOMBRE ES:" + nombre);
+        String apellido = getCampoApellido();
+        String telefono = getCampoTelefono();
+        String direccion = getCampoDireccion();
+        String correoElectronico = getCampoCorreoElectronico();
+        String icono = getCampoImagen();
+        String estadoCivil = "";
+        if (radioBotonSoltero.isSelected()) {
+            estadoCivil = "Soltero";
+        } else if (radioBotonCasado.isSelected()) {
+            estadoCivil = "Casado";
+        } else if (radioBotonUnionLibre.isSelected()) {
+            estadoCivil = "Union Libre";
+        } else if (radioBotonDivorciado.isSelected()) {
+            estadoCivil = "Divorciado";
+        }
+        Object[] nuevaFila = {nombre, apellido, telefono, direccion, correoElectronico, estadoCivil, icono};
+        modelo.addRow(nuevaFila);
+        campoNombre.setText("");
+        campoApellido.setText("");
+        campoTelefono.setText("");
+        campoDireccion.setText("");
+        campoCorreoElectronico.setText("");
+        campoImagen.setText("");
+        campoImagen.setText("");
+        grupoBotones.clearSelection();
     }//GEN-LAST:event_botonGuardarActionPerformed
 
 
