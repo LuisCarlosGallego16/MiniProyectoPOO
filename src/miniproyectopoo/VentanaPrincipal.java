@@ -36,20 +36,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         PanelMenu panelMenu = new PanelMenu(this);
 
         cambiarPanelContenedor2(panelMenu);
-        
-    }
- public AgregarContacto getAgregarContacto() {
-    return agregarContacto;
 
     }
- 
 
+    //METODO PARA PODER CAMBIAR DE PANEL
     public void cambiarPanelContenedor2(JPanel nuevoPanel) {
-        PanelContenedor2.removeAll(); // Quitar el contenido actual
-        PanelContenedor2.setLayout(new BorderLayout()); // Establecer un nuevo layout
-        PanelContenedor2.add(nuevoPanel); // Añadir el nuevo panel
-        PanelContenedor2.revalidate(); // Validar cambios
-        PanelContenedor2.repaint(); // Repintar para ver los cambios
+        PanelContenedor2.removeAll();
+        PanelContenedor2.setLayout(new BorderLayout());
+        PanelContenedor2.add(nuevoPanel);
+        PanelContenedor2.revalidate();
+        PanelContenedor2.repaint();
         nuevoPanel.setFocusable(true);
 
     }
@@ -188,9 +184,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_menuItemSalirActionPerformed
 
     private void menuItemGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemGuardarActionPerformed
-       DefaultTableModel modelo = (DefaultTableModel) getTablaContactos().getModel();
+        DefaultTableModel modelo = (DefaultTableModel) getTablaContactos().getModel();
         String nombre = agregarContacto.getCampoNombre();
-        System.out.println("NOMBRE"+nombre);
+        System.out.println("NOMBRE" + nombre);
         String apellido = agregarContacto.getCampoApellido();
         String telefono = agregarContacto.getCampoTelefono();
         String direccion = agregarContacto.getCampoDireccion();
@@ -217,7 +213,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         agregarContacto.setCampoImagen("");
         agregarContacto.limpiarBotones();
 
-              
 
     }//GEN-LAST:event_menuItemGuardarActionPerformed
 

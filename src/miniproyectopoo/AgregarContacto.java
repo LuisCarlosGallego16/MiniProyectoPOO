@@ -29,11 +29,9 @@ public class AgregarContacto extends javax.swing.JPanel {
         grupoBotones.add(radioBotonUnionLibre);
         grupoBotones.add(radioBotonDivorciado);
         configurarActionListeners();
-        setFocusable(true);
-        requestFocusInWindow();
-
     }
     
+    //Creamos un metodo de ActionListeners para cada campo, para que capture los eventos y al presionar la tecla enter se guarden los cambios y se añada a la tabla.
     private void configurarActionListeners() {
     campoNombre.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -379,8 +377,34 @@ public class AgregarContacto extends javax.swing.JPanel {
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-        botonGuardarActionPerformed(null); 
-    }
+        DefaultTableModel modelo = (DefaultTableModel) ventanaPrincipal.getTablaContactos().getModel();
+        String nombre = getCampoNombre();
+        String apellido = getCampoApellido();
+        String telefono = getCampoTelefono();
+        String direccion = getCampoDireccion();
+        String correoElectronico = getCampoCorreoElectronico();
+        String icono = getCampoImagen();
+        String estadoCivil = "";
+        if (radioBotonSoltero.isSelected()) {
+            estadoCivil = "Soltero";
+        } else if (radioBotonCasado.isSelected()) {
+            estadoCivil = "Casado";
+        } else if (radioBotonUnionLibre.isSelected()) {
+            estadoCivil = "Union Libre";
+        } else if (radioBotonDivorciado.isSelected()) {
+            estadoCivil = "Divorciado";
+        }
+        Object[] nuevaFila = {nombre, apellido, telefono, direccion, correoElectronico, estadoCivil, icono};
+        modelo.addRow(nuevaFila);
+        campoNombre.setText("");
+        campoApellido.setText("");
+        campoTelefono.setText("");
+        campoDireccion.setText("");
+        campoCorreoElectronico.setText("");
+        campoImagen.setText("");
+        campoImagen.setText("");
+        grupoBotones.clearSelection();
+        }
     }//GEN-LAST:event_formKeyPressed
 
 
