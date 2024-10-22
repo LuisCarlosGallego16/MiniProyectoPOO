@@ -27,7 +27,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         initComponents();
         agregarContacto = new AgregarContacto(this, getPanelContenedor2(), modelo);
         tablaContactos = new TablaContactos(this);
-        editarContacto = new EditarContacto(this,getPanelContenedor2());
+        editarContacto = new EditarContacto(this, getPanelContenedor2());
         modelo = (DefaultTableModel) getTablaContactos().getModel();
         PanelContenedor1.removeAll();
         PanelContenedor1.setLayout(new BorderLayout());
@@ -40,8 +40,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     }
 
-    
-    
     //METODO PARA PODER CAMBIAR DE PANEL
     public void cambiarPanelContenedor2(JPanel nuevoPanel) {
         PanelContenedor2.removeAll();
@@ -61,22 +59,22 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         return tablaContactos.getTabla();
     }
 
-    public DefaultTableModel getModelo(){
+    public DefaultTableModel getModelo() {
         return modelo;
     }
-    
-    public AgregarContacto getAgregarContacto(){
+
+    public AgregarContacto getAgregarContacto() {
         return agregarContacto;
     }
-    
-    public void setAgregarContacto(AgregarContacto agregarContacto){
+
+    public void setAgregarContacto(AgregarContacto agregarContacto) {
         this.agregarContacto = agregarContacto;
     }
-    public EditarContacto getEditarContacto(){
+
+    public EditarContacto getEditarContacto() {
         return editarContacto;
     }
-    
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

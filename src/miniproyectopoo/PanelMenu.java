@@ -17,6 +17,7 @@ public class PanelMenu extends javax.swing.JPanel {
     private AgregarContacto agregarContacto;
     private DefaultTableModel modelo;
     private EditarContacto editarContacto;
+
     /**
      * Creates new form PanelMenu
      */
@@ -126,17 +127,18 @@ public class PanelMenu extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonAgregarContactoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarContactoActionPerformed
-    // Validación para usar la misma instancia
-    if (ventanaPrincipal.getAgregarContacto() == null) {
-        AgregarContacto agregarContacto2 = new AgregarContacto(ventanaPrincipal, ventanaPrincipal.getPanelContenedor2(), modelo);
-        ventanaPrincipal.setAgregarContacto(agregarContacto2); 
-    }
-    ventanaPrincipal.cambiarPanelContenedor2(ventanaPrincipal.getAgregarContacto());
+        // Validación para usar la misma instancia
+        if (ventanaPrincipal.getAgregarContacto() == null) {
+            AgregarContacto agregarContacto2 = new AgregarContacto(ventanaPrincipal, ventanaPrincipal.getPanelContenedor2(), modelo);
+            ventanaPrincipal.setAgregarContacto(agregarContacto2);
+        }
+        ventanaPrincipal.cambiarPanelContenedor2(ventanaPrincipal.getAgregarContacto());
     }//GEN-LAST:event_botonAgregarContactoActionPerformed
 
     private void botonEditarContactoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarContactoActionPerformed
         editarContacto = new EditarContacto(ventanaPrincipal, ventanaPrincipal.getPanelContenedor2());
-        ventanaPrincipal.cambiarPanelContenedor2(editarContacto);
+        //ABRIMOS EL PANEL QUE NOS MUESTRA LOS DATOS AL SELECCIONAR UNA FILA DE LA TABLA.
+        ventanaPrincipal.cambiarPanelContenedor2(ventanaPrincipal.getEditarContacto());
     }//GEN-LAST:event_botonEditarContactoActionPerformed
 
     private void botonEliminarContactoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarContactoActionPerformed

@@ -91,10 +91,7 @@ public class TablaContactos extends javax.swing.JPanel {
             ventanaPrincipal.getEditarContacto().setCampoCorreoElectronico(correoElectronico);
             ventanaPrincipal.getEditarContacto().setCampoIcono(icono);
             ventanaPrincipal.getEditarContacto().setEstadoCivil(estadoCivil);
-            
-            //CAMBIA EL PANEL PARA MOSTRAR UN NUEVO PANEL CON LOS DATOS DE LA TABLA PARA SU POSIBLE EDICION.
-            ventanaPrincipal.cambiarPanelContenedor2(ventanaPrincipal.getEditarContacto());
-        }
+                    }
     }//GEN-LAST:event_tablaContactosMouseClicked
 
 
