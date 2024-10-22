@@ -127,10 +127,11 @@ public class PanelMenu extends javax.swing.JPanel {
 
     private void botonAgregarContactoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarContactoActionPerformed
     // Validación para usar la misma instancia
-    if (ventanaPrincipal.agregarContacto == null) {
-        ventanaPrincipal.agregarContacto = new AgregarContacto(ventanaPrincipal, ventanaPrincipal.getPanelContenedor2(), modelo);
+    if (ventanaPrincipal.getAgregarContacto() == null) {
+        AgregarContacto agregarContacto2 = new AgregarContacto(ventanaPrincipal, ventanaPrincipal.getPanelContenedor2(), modelo);
+        ventanaPrincipal.setAgregarContacto(agregarContacto2); 
     }
-    ventanaPrincipal.cambiarPanelContenedor2(ventanaPrincipal.agregarContacto);
+    ventanaPrincipal.cambiarPanelContenedor2(ventanaPrincipal.getAgregarContacto());
     }//GEN-LAST:event_botonAgregarContactoActionPerformed
 
     private void botonEditarContactoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarContactoActionPerformed

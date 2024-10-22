@@ -212,7 +212,8 @@ public class AgregarContacto extends javax.swing.JPanel {
                 .addGap(15, 15, 15))
         );
     }// </editor-fold>//GEN-END:initComponents
-   //GETTERS PARA OBTENER LA INFORMACION DE LOS CAMPOS DE TEXTFIEL
+  
+    //GETTERS PARA OBTENER LA INFORMACION DE LOS CAMPOS 
 
     public String getCampoApellido() {
         return campoApellido.getText();
@@ -254,7 +255,7 @@ public class AgregarContacto extends javax.swing.JPanel {
         return radioBotonUnionLibre;
     }
 
-    //SETTERS PARA VACIAR CAMPOS
+    //SETTERS PARA DAR VALOR EN LOS CAMPOS
     public void setCampoNombre(String nombre) {
         campoNombre.setText(nombre);
     }

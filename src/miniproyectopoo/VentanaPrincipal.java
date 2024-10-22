@@ -19,9 +19,9 @@ import javax.swing.table.DefaultTableModel;
 public class VentanaPrincipal extends javax.swing.JFrame {
 
     private TablaContactos tablaContactos;
-    protected DefaultTableModel modelo;
-    protected AgregarContacto agregarContacto;
-    protected EditarContacto editarContacto;
+    private DefaultTableModel modelo;
+    private AgregarContacto agregarContacto;
+    private EditarContacto editarContacto;
 
     public VentanaPrincipal() {
         initComponents();
@@ -61,6 +61,22 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         return tablaContactos.getTabla();
     }
 
+    public DefaultTableModel getModelo(){
+        return modelo;
+    }
+    
+    public AgregarContacto getAgregarContacto(){
+        return agregarContacto;
+    }
+    
+    public void setAgregarContacto(AgregarContacto agregarContacto){
+        this.agregarContacto = agregarContacto;
+    }
+    public EditarContacto getEditarContacto(){
+        return editarContacto;
+    }
+    
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
