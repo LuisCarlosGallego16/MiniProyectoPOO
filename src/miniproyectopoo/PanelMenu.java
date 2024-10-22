@@ -16,7 +16,7 @@ public class PanelMenu extends javax.swing.JPanel {
     private VentanaPrincipal ventanaPrincipal;
     private AgregarContacto agregarContacto;
     private DefaultTableModel modelo;
-
+    private EditarContacto editarContacto;
     /**
      * Creates new form PanelMenu
      */
@@ -134,7 +134,7 @@ public class PanelMenu extends javax.swing.JPanel {
     }//GEN-LAST:event_botonAgregarContactoActionPerformed
 
     private void botonEditarContactoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarContactoActionPerformed
-        EditarContacto editarContacto = new EditarContacto(ventanaPrincipal, ventanaPrincipal.getPanelContenedor2());
+        editarContacto = new EditarContacto(ventanaPrincipal, ventanaPrincipal.getPanelContenedor2());
         ventanaPrincipal.cambiarPanelContenedor2(editarContacto);
     }//GEN-LAST:event_botonEditarContactoActionPerformed
 

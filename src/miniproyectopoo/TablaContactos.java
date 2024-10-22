@@ -4,7 +4,9 @@
  */
 package miniproyectopoo;
 
+import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -12,17 +14,24 @@ import javax.swing.JTable;
  */
 public class TablaContactos extends javax.swing.JPanel {
 
+    private VentanaPrincipal ventanaPrincipal;
+    private DefaultTableModel modelo;
+    private JPanel panelContenedor2;
+
     /**
      * Creates new form TablaContactos
      */
-    public TablaContactos() {
-        
+    public TablaContactos(VentanaPrincipal ventanaPrincipal) {
+        this.ventanaPrincipal = ventanaPrincipal;
         initComponents();
+        modelo = (DefaultTableModel) getTabla().getModel();
+
     }
 
-    public JTable getTabla(){
-        return jTable1;
+    public JTable getTabla() {
+        return tablaContactos;
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -33,9 +42,9 @@ public class TablaContactos extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaContactos = new javax.swing.JTable();
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaContactos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -51,9 +60,14 @@ public class TablaContactos extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.getTableHeader().setResizingAllowed(false);
-        jTable1.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(jTable1);
+        tablaContactos.getTableHeader().setResizingAllowed(false);
+        tablaContactos.getTableHeader().setReorderingAllowed(false);
+        tablaContactos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaContactosMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tablaContactos);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -67,9 +81,36 @@ public class TablaContactos extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void tablaContactosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaContactosMouseClicked
+        
+        int filaSeleccionada = tablaContactos.getSelectedRow();
+        if (filaSeleccionada != -1) {
+            DefaultTableModel modelo = (DefaultTableModel) tablaContactos.getModel();
+            //GUARDAMOS LOS DATOS DE LA TABLA, SE PASAN PARAMETRO LA FILA Y LA COLUMNA.
+            String nombre = (String) modelo.getValueAt(filaSeleccionada, 0);
+            String apellido = (String) modelo.getValueAt(filaSeleccionada, 1);
+            String telefono = (String) modelo.getValueAt(filaSeleccionada, 2);
+            String direccion = (String) modelo.getValueAt(filaSeleccionada, 3);
+            String correoElectronico = (String) modelo.getValueAt(filaSeleccionada, 4);
+            String estadoCivil = (String) modelo.getValueAt(filaSeleccionada, 5);
+            String icono = (String) modelo.getValueAt(filaSeleccionada, 6);
+
+          
+
+           ventanaPrincipal.editarContacto.setCampoNombre(nombre);
+           ventanaPrincipal. editarContacto.setCampoApellido(apellido);
+           ventanaPrincipal. editarContacto.setCampoTelefono(telefono);
+           ventanaPrincipal. editarContacto.setCampoDireccion(direccion);
+           ventanaPrincipal. editarContacto.setCampoCorreoElectronico(correoElectronico);
+           ventanaPrincipal. editarContacto.setCampoIcono(icono);
+           ventanaPrincipal. editarContacto.setEstadoCivil(estadoCivil);
+            ventanaPrincipal.cambiarPanelContenedor2(ventanaPrincipal.editarContacto);
+        } 
+    }//GEN-LAST:event_tablaContactosMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tablaContactos;
     // End of variables declaration//GEN-END:variables
 }

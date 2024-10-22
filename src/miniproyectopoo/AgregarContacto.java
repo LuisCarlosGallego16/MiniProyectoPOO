@@ -16,13 +16,13 @@ public class AgregarContacto extends javax.swing.JPanel {
     private VentanaPrincipal ventanaPrincipal;
     private DefaultTableModel modelo;
     private TablaContactos tablaContactos;
+    private PanelMenu panelMenu;
 
     public AgregarContacto(VentanaPrincipal ventanaPrincipal, JPanel panelContenedor2, DefaultTableModel modelo) {
+       initComponents();
         this.ventanaPrincipal = ventanaPrincipal;
         this.panelContenedor2 = panelContenedor2;
         this.modelo = modelo;
-        initComponents();
-
         grupoBotones = new ButtonGroup();
         grupoBotones.add(radioBotonSoltero);
         grupoBotones.add(radioBotonCasado);
@@ -30,45 +30,6 @@ public class AgregarContacto extends javax.swing.JPanel {
         grupoBotones.add(radioBotonDivorciado);
         configurarActionListeners();
     }
-    
-    //Creamos un metodo de ActionListeners para cada campo, para que capture los eventos y al presionar la tecla enter se guarden los cambios y se añada a la tabla.
-    private void configurarActionListeners() {
-    campoNombre.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            botonGuardarActionPerformed(evt);
-        }
-    });
-
-    campoApellido.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            botonGuardarActionPerformed(evt);
-        }
-    });
-
-    campoTelefono.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            botonGuardarActionPerformed(evt);
-        }
-    });
-
-    campoCorreoElectronico.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            botonGuardarActionPerformed(evt);
-        }
-    });
-
-    campoDireccion.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            botonGuardarActionPerformed(evt);
-        }
-    });
-
-    campoImagen.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            botonGuardarActionPerformed(evt);
-        }
-    });
-}
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -102,6 +63,7 @@ public class AgregarContacto extends javax.swing.JPanel {
             }
         });
 
+        etiquetaTitulo.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
         etiquetaTitulo.setText("AGREGAR CONTACTO");
 
         etiquetaNombre.setText("NOMBRE:");
@@ -243,7 +205,7 @@ public class AgregarContacto extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(etiquetaIcono)
                     .addComponent(campoImagen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonGuardar)
                     .addComponent(botonCancelar))
@@ -292,6 +254,7 @@ public class AgregarContacto extends javax.swing.JPanel {
         return radioBotonUnionLibre;
     }
 
+    //SETTERS PARA VACIAR CAMPOS
     public void setCampoNombre(String nombre) {
         campoNombre.setText(nombre);
     }
@@ -320,9 +283,48 @@ public class AgregarContacto extends javax.swing.JPanel {
         grupoBotones.clearSelection();
     }
 
-//////////////////////////
+    //Creamos un metodo de ActionListeners para cada campo, para que capture los eventos y al presionar la tecla enter se guarden los cambios y se añada a la tabla.
+    private void configurarActionListeners() {
+        campoNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonGuardarActionPerformed(evt);
+            }
+        });
+
+        campoApellido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonGuardarActionPerformed(evt);
+            }
+        });
+
+        campoTelefono.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonGuardarActionPerformed(evt);
+            }
+        });
+
+        campoCorreoElectronico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonGuardarActionPerformed(evt);
+            }
+        });
+
+        campoDireccion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonGuardarActionPerformed(evt);
+            }
+        });
+
+        campoImagen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonGuardarActionPerformed(evt);
+            }
+        });
+    }
+
+
     private void botonMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMenuActionPerformed
-        PanelMenu panelMenu = new PanelMenu(ventanaPrincipal);
+        panelMenu = new PanelMenu(ventanaPrincipal);
         panelContenedor2.removeAll();
         panelContenedor2.add(panelMenu);
         panelContenedor2.revalidate();
@@ -361,49 +363,71 @@ public class AgregarContacto extends javax.swing.JPanel {
     }//GEN-LAST:event_botonGuardarActionPerformed
 
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
-        int confirmacion = JOptionPane.showConfirmDialog(panelContenedor2, "ESTAS SEGURO DE CANCELAR", "CONFIRMACION", JOptionPane.YES_NO_OPTION);
-        if (confirmacion == JOptionPane.YES_OPTION) {
+        //ALMACENO EN VARIABLES LOS CAMPOS DE TEXTO, ELIMIANDO ESPACIOS EN BLANCO
+        String nombre = campoNombre.getText().trim();
+        String apellido = campoApellido.getText().trim();
+        String telefono = campoTelefono.getText().trim();
+        String direccion = campoDireccion.getText().trim();
+        String correoElectronico = campoCorreoElectronico.getText().trim();
+        String icono = campoImagen.getText().trim();
+        //VALIDACION PARA TODOS LOS CAMPOS SI ESTAN VACIOS!
+        if (nombre.isEmpty() && apellido.isEmpty() && telefono.isEmpty() && direccion.isEmpty() && correoElectronico.isEmpty() && icono.isEmpty()) {
+            int confirmacion2 = JOptionPane.showConfirmDialog(panelContenedor2, "LOS CAMPOS ESTÁN VACÍOS, ¿QUIERES VOLVER AL MENÚ?", "CONFIRMACIÓN", JOptionPane.YES_NO_OPTION);
+            if (confirmacion2 == JOptionPane.YES_OPTION) {
+                panelMenu = new PanelMenu(ventanaPrincipal);
+                panelContenedor2.removeAll();
+                panelContenedor2.add(panelMenu);
+                panelContenedor2.revalidate();
+                panelContenedor2.repaint();
+            }
+        } 
+        //VALIDACION POR SI AL MENOS SE TIENE UN CAMPO CON TEXTO
+        else {
+            int confirmacion = JOptionPane.showConfirmDialog(panelContenedor2, "¿ESTÁS SEGURO DE CANCELAR?", "CONFIRMACIÓN", JOptionPane.YES_NO_OPTION);
+            if (confirmacion == JOptionPane.YES_OPTION) {
+                // Limpiar todos los campos
+                campoNombre.setText("");
+                campoApellido.setText("");
+                campoTelefono.setText("");
+                campoDireccion.setText("");
+                campoCorreoElectronico.setText("");
+                campoImagen.setText("");
+                grupoBotones.clearSelection();
+            } else {
+                JOptionPane.showMessageDialog(panelContenedor2, "¡Sigue agregando contactos!");
+            }
+        }
+    }//GEN-LAST:event_botonCancelarActionPerformed
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            DefaultTableModel modelo = (DefaultTableModel) ventanaPrincipal.getTablaContactos().getModel();
+            String nombre = getCampoNombre();
+            String apellido = getCampoApellido();
+            String telefono = getCampoTelefono();
+            String direccion = getCampoDireccion();
+            String correoElectronico = getCampoCorreoElectronico();
+            String icono = getCampoImagen();
+            String estadoCivil = "";
+            if (radioBotonSoltero.isSelected()) {
+                estadoCivil = "Soltero";
+            } else if (radioBotonCasado.isSelected()) {
+                estadoCivil = "Casado";
+            } else if (radioBotonUnionLibre.isSelected()) {
+                estadoCivil = "Union Libre";
+            } else if (radioBotonDivorciado.isSelected()) {
+                estadoCivil = "Divorciado";
+            }
+            Object[] nuevaFila = {nombre, apellido, telefono, direccion, correoElectronico, estadoCivil, icono};
+            modelo.addRow(nuevaFila);
             campoNombre.setText("");
             campoApellido.setText("");
             campoTelefono.setText("");
             campoDireccion.setText("");
             campoCorreoElectronico.setText("");
             campoImagen.setText("");
+            campoImagen.setText("");
             grupoBotones.clearSelection();
-        } else {
-            JOptionPane.showMessageDialog(panelContenedor2, "SIGUE AGREGANDO CONTACTOS");
-        }
-    }//GEN-LAST:event_botonCancelarActionPerformed
-
-    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-        DefaultTableModel modelo = (DefaultTableModel) ventanaPrincipal.getTablaContactos().getModel();
-        String nombre = getCampoNombre();
-        String apellido = getCampoApellido();
-        String telefono = getCampoTelefono();
-        String direccion = getCampoDireccion();
-        String correoElectronico = getCampoCorreoElectronico();
-        String icono = getCampoImagen();
-        String estadoCivil = "";
-        if (radioBotonSoltero.isSelected()) {
-            estadoCivil = "Soltero";
-        } else if (radioBotonCasado.isSelected()) {
-            estadoCivil = "Casado";
-        } else if (radioBotonUnionLibre.isSelected()) {
-            estadoCivil = "Union Libre";
-        } else if (radioBotonDivorciado.isSelected()) {
-            estadoCivil = "Divorciado";
-        }
-        Object[] nuevaFila = {nombre, apellido, telefono, direccion, correoElectronico, estadoCivil, icono};
-        modelo.addRow(nuevaFila);
-        campoNombre.setText("");
-        campoApellido.setText("");
-        campoTelefono.setText("");
-        campoDireccion.setText("");
-        campoCorreoElectronico.setText("");
-        campoImagen.setText("");
-        campoImagen.setText("");
-        grupoBotones.clearSelection();
         }
     }//GEN-LAST:event_formKeyPressed
 

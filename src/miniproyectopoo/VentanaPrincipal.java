@@ -21,11 +21,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private TablaContactos tablaContactos;
     protected DefaultTableModel modelo;
     protected AgregarContacto agregarContacto;
+    protected EditarContacto editarContacto;
 
     public VentanaPrincipal() {
         initComponents();
         agregarContacto = new AgregarContacto(this, getPanelContenedor2(), modelo);
-        tablaContactos = new TablaContactos();
+        tablaContactos = new TablaContactos(this);
+        editarContacto = new EditarContacto(this,getPanelContenedor2());
         modelo = (DefaultTableModel) getTablaContactos().getModel();
         PanelContenedor1.removeAll();
         PanelContenedor1.setLayout(new BorderLayout());
@@ -34,11 +36,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         PanelContenedor1.repaint();
 
         PanelMenu panelMenu = new PanelMenu(this);
-
         cambiarPanelContenedor2(panelMenu);
 
     }
 
+    
+    
     //METODO PARA PODER CAMBIAR DE PANEL
     public void cambiarPanelContenedor2(JPanel nuevoPanel) {
         PanelContenedor2.removeAll();
@@ -94,7 +97,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         );
         PanelContenedor2Layout.setVerticalGroup(
             PanelContenedor2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 271, Short.MAX_VALUE)
+            .addGap(0, 308, Short.MAX_VALUE)
         );
 
         menuArchivo.setText("Archivo");
@@ -212,8 +215,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         agregarContacto.setCampoCorreoElectronico("");
         agregarContacto.setCampoImagen("");
         agregarContacto.limpiarBotones();
-
-
     }//GEN-LAST:event_menuItemGuardarActionPerformed
 
     private void menuItemAcerdaDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemAcerdaDeActionPerformed

@@ -125,7 +125,7 @@
                   <Component id="etiquetaIcono" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="campoImagen" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="15" max="32767" attributes="0"/>
+              <EmptySpace pref="10" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="botonGuardar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="botonCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -138,6 +138,9 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="etiquetaTitulo">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Arial Black" size="14" style="3"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="AGREGAR CONTACTO"/>
       </Properties>
     </Component>

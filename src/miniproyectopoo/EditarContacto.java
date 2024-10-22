@@ -4,25 +4,84 @@
  */
 package miniproyectopoo;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author luisc
  */
 public class EditarContacto extends javax.swing.JPanel {
+
+    private ButtonGroup grupoBotones;
     private JPanel panelContenedor2;
     private VentanaPrincipal ventanaPrincipal;
     private TablaContactos tablaContactos;
+    
     /**
      * Creates new form EditarContacto
      */
-    public EditarContacto(VentanaPrincipal ventanaPrincipal , JPanel panelContenedor2) {
+    public EditarContacto(VentanaPrincipal ventanaPrincipal, JPanel panelContenedor2) {
+        initComponents();
         this.ventanaPrincipal = ventanaPrincipal;
         this.panelContenedor2 = panelContenedor2;
-        
-        
-        initComponents();
+
+        grupoBotones = new ButtonGroup();
+        grupoBotones.add(radioBotonSoltero);
+        grupoBotones.add(radioBotonCasado);
+        grupoBotones.add(radioBotonUnionLibre);
+        grupoBotones.add(radioBotonDivorciado);
+    }
+
+    //SETTERS PARA LOS CAMPOS
+    public void setCampoNombre(String nombre) {
+        campoNombre.setText(nombre);
+    }
+
+    public void setCampoApellido(String apellido) {
+        campoApellido.setText(apellido);
+    }
+
+    public void setCampoTelefono(String telefono) {
+        campoTelefono.setText(telefono);
+
+    }
+
+    public void setCampoCorreoElectronico(String correo) {
+        campoCorreoElectronico.setText(correo);
+    }
+
+    public void setCampoDireccion(String direccion) {
+        campoDireccion.setText(direccion);
+    }
+
+    public void setCampoIcono(String icono) {
+        campoIcono.setText(icono);
+    }
+
+    public void setEstadoCivil(String estadoCivil) {
+        switch (estadoCivil) {
+            case "Soltero":
+                radioBotonSoltero.setSelected(true);
+                break;
+            case "Casado":
+                radioBotonCasado.setSelected(true);
+                break;
+            case "Union Libre":
+                radioBotonUnionLibre.setSelected(true);
+                break;
+            case "Divoriciado":
+                radioBotonDivorciado.setSelected(true);
+                break;
+            default:
+                limpiarBotones(); // Limpia los botones si no hay coincidencia
+                break;
+        }
+    }
+
+    public void limpiarBotones() {
+        grupoBotones.clearSelection();
     }
 
     /**
@@ -35,6 +94,26 @@ public class EditarContacto extends javax.swing.JPanel {
     private void initComponents() {
 
         botonMenu = new javax.swing.JButton();
+        etiquetaTitulo = new javax.swing.JLabel();
+        etiquetaNombre = new javax.swing.JLabel();
+        etiquetaApellido = new javax.swing.JLabel();
+        etiquetaTelefono = new javax.swing.JLabel();
+        etiquetaCorreoElectronico = new javax.swing.JLabel();
+        etiquetaDireccion = new javax.swing.JLabel();
+        etiquetaEstadoCivil = new javax.swing.JLabel();
+        etiquetaImagen = new javax.swing.JLabel();
+        radioBotonSoltero = new javax.swing.JRadioButton();
+        radioBotonCasado = new javax.swing.JRadioButton();
+        radioBotonUnionLibre = new javax.swing.JRadioButton();
+        radioBotonDivorciado = new javax.swing.JRadioButton();
+        campoNombre = new javax.swing.JTextField();
+        campoApellido = new javax.swing.JTextField();
+        campoTelefono = new javax.swing.JTextField();
+        campoCorreoElectronico = new javax.swing.JTextField();
+        campoDireccion = new javax.swing.JTextField();
+        campoIcono = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         botonMenu.setText("MENU");
         botonMenu.addActionListener(new java.awt.event.ActionListener() {
@@ -43,6 +122,39 @@ public class EditarContacto extends javax.swing.JPanel {
             }
         });
 
+        etiquetaTitulo.setText("EDITAR CONTACTO");
+
+        etiquetaNombre.setText("NOMBRE:");
+
+        etiquetaApellido.setText("APELLIDO:");
+
+        etiquetaTelefono.setText("TELEFONO:");
+
+        etiquetaCorreoElectronico.setText("CORREO ELECTRONICO:");
+
+        etiquetaDireccion.setText("DIRECCION");
+
+        etiquetaEstadoCivil.setText("ESTADO CIVIL");
+
+        etiquetaImagen.setText("ICONO");
+
+        radioBotonSoltero.setText("SOLTERO");
+
+        radioBotonCasado.setText("CASADO");
+
+        radioBotonUnionLibre.setText("UNION LIBRE");
+
+        radioBotonDivorciado.setText("DIVORCIADO");
+
+        jButton1.setText("GUARDAR");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("CANCELAR");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -50,27 +162,144 @@ public class EditarContacto extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addComponent(botonMenu)
-                .addContainerGap(294, Short.MAX_VALUE))
+                .addGap(134, 134, 134)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(etiquetaEstadoCivil)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(etiquetaImagen)
+                        .addGap(18, 18, 18)
+                        .addComponent(campoIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(etiquetaApellido)
+                            .addComponent(etiquetaTelefono)
+                            .addComponent(etiquetaCorreoElectronico)
+                            .addComponent(etiquetaNombre))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(campoCorreoElectronico, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(etiquetaDireccion)
+                        .addGap(18, 18, 18)
+                        .addComponent(campoDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(103, 103, 103)
+                                .addComponent(radioBotonSoltero))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jButton1)
+                                .addGap(11, 11, 11)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(radioBotonCasado)
+                                .addGap(18, 18, 18)
+                                .addComponent(radioBotonUnionLibre)
+                                .addGap(18, 18, 18)
+                                .addComponent(radioBotonDivorciado))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(29, 29, 29)
+                                .addComponent(jButton2)))))
+                .addContainerGap(75, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(etiquetaTitulo)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(campoNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
+                            .addComponent(campoApellido)
+                            .addComponent(campoTelefono))))
+                .addGap(252, 252, 252))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(botonMenu)
-                .addContainerGap(242, Short.MAX_VALUE))
+                .addGap(7, 7, 7)
+                .addComponent(etiquetaTitulo)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(botonMenu))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(etiquetaNombre)
+                            .addComponent(campoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(etiquetaApellido)
+                            .addComponent(campoApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(etiquetaTelefono)
+                    .addComponent(campoTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(etiquetaCorreoElectronico)
+                    .addComponent(campoCorreoElectronico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(etiquetaDireccion)
+                    .addComponent(campoDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(etiquetaEstadoCivil)
+                    .addComponent(radioBotonSoltero)
+                    .addComponent(radioBotonCasado)
+                    .addComponent(radioBotonUnionLibre)
+                    .addComponent(radioBotonDivorciado))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(etiquetaImagen)
+                    .addComponent(campoIcono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(9, 9, 9)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMenuActionPerformed
         PanelMenu panelMenu = new PanelMenu(ventanaPrincipal);
-        panelContenedor2.removeAll(); 
-        panelContenedor2.add(panelMenu); 
-        panelContenedor2.revalidate(); 
-        panelContenedor2.repaint(); 
+        panelContenedor2.removeAll();
+        panelContenedor2.add(panelMenu);
+        panelContenedor2.revalidate();
+        panelContenedor2.repaint();
     }//GEN-LAST:event_botonMenuActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonMenu;
+    private javax.swing.JTextField campoApellido;
+    private javax.swing.JTextField campoCorreoElectronico;
+    private javax.swing.JTextField campoDireccion;
+    private javax.swing.JTextField campoIcono;
+    private javax.swing.JTextField campoNombre;
+    private javax.swing.JTextField campoTelefono;
+    private javax.swing.JLabel etiquetaApellido;
+    private javax.swing.JLabel etiquetaCorreoElectronico;
+    private javax.swing.JLabel etiquetaDireccion;
+    private javax.swing.JLabel etiquetaEstadoCivil;
+    private javax.swing.JLabel etiquetaImagen;
+    private javax.swing.JLabel etiquetaNombre;
+    private javax.swing.JLabel etiquetaTelefono;
+    private javax.swing.JLabel etiquetaTitulo;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JRadioButton radioBotonCasado;
+    private javax.swing.JRadioButton radioBotonDivorciado;
+    private javax.swing.JRadioButton radioBotonSoltero;
+    private javax.swing.JRadioButton radioBotonUnionLibre;
     // End of variables declaration//GEN-END:variables
+
+    private String getEstadoCivil() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
