@@ -203,27 +203,35 @@ public class EditarContacto extends javax.swing.JPanel {
             }
         });
 
+        etiquetaTitulo.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
         etiquetaTitulo.setText("EDITAR CONTACTO");
         etiquetaTitulo.setFocusable(false);
 
+        etiquetaNombre.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         etiquetaNombre.setText("NOMBRE:");
         etiquetaNombre.setFocusable(false);
 
+        etiquetaApellido.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         etiquetaApellido.setText("APELLIDO:");
         etiquetaApellido.setFocusable(false);
 
+        etiquetaTelefono.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         etiquetaTelefono.setText("TELEFONO:");
         etiquetaTelefono.setFocusable(false);
 
+        etiquetaCorreoElectronico.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         etiquetaCorreoElectronico.setText("CORREO ELECTRONICO:");
         etiquetaCorreoElectronico.setFocusable(false);
 
+        etiquetaDireccion.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         etiquetaDireccion.setText("DIRECCION");
         etiquetaDireccion.setFocusable(false);
 
+        etiquetaEstadoCivil.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         etiquetaEstadoCivil.setText("ESTADO CIVIL");
         etiquetaEstadoCivil.setFocusable(false);
 
+        etiquetaImagen.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         etiquetaImagen.setText("ICONO");
         etiquetaImagen.setFocusable(false);
 
@@ -238,6 +246,12 @@ public class EditarContacto extends javax.swing.JPanel {
 
         radioBotonDivorciado.setText("DIVORCIADO");
         radioBotonDivorciado.setFocusable(false);
+
+        campoTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                campoTelefonoKeyTyped(evt);
+            }
+        });
 
         botonGuardar.setText("GUARDAR");
         botonGuardar.setFocusable(false);
@@ -291,7 +305,6 @@ public class EditarContacto extends javax.swing.JPanel {
                                 .addGap(11, 11, 11)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
                                 .addComponent(radioBotonCasado)
                                 .addGap(18, 18, 18)
                                 .addComponent(radioBotonUnionLibre)
@@ -356,7 +369,7 @@ public class EditarContacto extends javax.swing.JPanel {
                     .addComponent(campoIcono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(9, 9, 9)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(botonCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                    .addComponent(botonCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
                     .addComponent(botonGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -371,50 +384,56 @@ public class EditarContacto extends javax.swing.JPanel {
     }//GEN-LAST:event_botonMenuActionPerformed
 
     private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
-        int filaSeleccionada = ventanaPrincipal.getTablaContactos().getSelectedRow();
-        if (filaSeleccionada != -1) {
-            int confirmacion = JOptionPane.showConfirmDialog(panelContenedor2, "ESTAS SEGURO DE EDITAR EL CONTACTO","CONFIRMACION", JOptionPane.YES_NO_OPTION);
-           if(confirmacion == JOptionPane.YES_OPTION){
-               DefaultTableModel modelo = (DefaultTableModel) ventanaPrincipal.getTablaContactos().getModel();
-                           String nombre = getCampoNombre();
-            String apellido = getCampoApellido();
-            String telefono = getCampoTelefono();
-            String direccion = getCampoDireccion();
-            String correoElectronico = getCampoCorreoElectronico();
-            String icono = getCampoImagen();
-            String estadoCivil = "";
-            if (radioBotonSoltero.isSelected()) {
-                estadoCivil = "Soltero";
-            } else if (radioBotonCasado.isSelected()) {
-                estadoCivil = "Casado";
-            } else if (radioBotonUnionLibre.isSelected()) {
-                estadoCivil = "Union Libre";
-            } else if (radioBotonDivorciado.isSelected()) {
-                estadoCivil = "Divorciado";
+        String correoIngresado = campoCorreoElectronico.getText();
+        if (!correoIngresado.contains("@") || !correoIngresado.endsWith(".com")) {
+            JOptionPane.showMessageDialog(this, "El correo electrónico debe contener '@' y terminar con '.com'.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+
+            int filaSeleccionada = ventanaPrincipal.getTablaContactos().getSelectedRow();
+            if (filaSeleccionada != -1) {
+                int confirmacion = JOptionPane.showConfirmDialog(panelContenedor2, "ESTAS SEGURO DE EDITAR EL CONTACTO", "CONFIRMACION", JOptionPane.YES_NO_OPTION);
+                if (confirmacion == JOptionPane.YES_OPTION) {
+                    DefaultTableModel modelo = (DefaultTableModel) ventanaPrincipal.getTablaContactos().getModel();
+                    String nombre = getCampoNombre();
+                    String apellido = getCampoApellido();
+                    String telefono = getCampoTelefono();
+                    String direccion = getCampoDireccion();
+                    String correoElectronico = getCampoCorreoElectronico();
+                    String icono = getCampoImagen();
+                    String estadoCivil = "";
+                    if (radioBotonSoltero.isSelected()) {
+                        estadoCivil = "Soltero";
+                    } else if (radioBotonCasado.isSelected()) {
+                        estadoCivil = "Casado";
+                    } else if (radioBotonUnionLibre.isSelected()) {
+                        estadoCivil = "Union Libre";
+                    } else if (radioBotonDivorciado.isSelected()) {
+                        estadoCivil = "Divorciado";
+                    }
+
+                    modelo.setValueAt(nombre, filaSeleccionada, 0);
+                    modelo.setValueAt(apellido, filaSeleccionada, 1);
+                    modelo.setValueAt(telefono, filaSeleccionada, 2);
+                    modelo.setValueAt(direccion, filaSeleccionada, 3);
+                    modelo.setValueAt(correoElectronico, filaSeleccionada, 4);
+                    modelo.setValueAt(estadoCivil, filaSeleccionada, 5);
+                    modelo.setValueAt(icono, filaSeleccionada, 6);
+                    campoNombre.setText("");
+                    campoApellido.setText("");
+                    campoTelefono.setText("");
+                    campoDireccion.setText("");
+                    campoCorreoElectronico.setText("");
+                    campoIcono.setText("");
+                    grupoBotones.clearSelection();
+                } else {
+                    JOptionPane.showMessageDialog(panelContenedor2, "HAZ CANCELADO");
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(panelContenedor2, "ELIGE UN CONTACTO");
             }
-
-            modelo.setValueAt(nombre, filaSeleccionada, 0);
-            modelo.setValueAt(apellido, filaSeleccionada, 1);
-            modelo.setValueAt(telefono, filaSeleccionada, 2);
-            modelo.setValueAt(direccion, filaSeleccionada, 3);
-            modelo.setValueAt(correoElectronico, filaSeleccionada, 4);
-            modelo.setValueAt(estadoCivil, filaSeleccionada, 5);
-            modelo.setValueAt(icono, filaSeleccionada, 6);
-            campoNombre.setText("");
-            campoApellido.setText("");
-            campoTelefono.setText("");
-            campoDireccion.setText("");
-            campoCorreoElectronico.setText("");
-            campoIcono.setText("");
-            grupoBotones.clearSelection();
-           }else{
-               JOptionPane.showMessageDialog(panelContenedor2, "HAZ CANCELADO");
-           }
-
-        }else{
-            JOptionPane.showMessageDialog(panelContenedor2, "ELIGE UN CONTACTO");
         }
-
 
     }//GEN-LAST:event_botonGuardarActionPerformed
 
@@ -456,47 +475,58 @@ public class EditarContacto extends javax.swing.JPanel {
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            int filaSeleccionada = ventanaPrincipal.getTablaContactos().getSelectedRow();
-            if (filaSeleccionada != 1) {
-                DefaultTableModel modelo = (DefaultTableModel) ventanaPrincipal.getTablaContactos().getModel();
-                String nombre = getCampoNombre();
-                String apellido = getCampoApellido();
-                String telefono = getCampoTelefono();
-                String direccion = getCampoDireccion();
-                String correoElectronico = getCampoCorreoElectronico();
-                String icono = getCampoImagen();
-                String estadoCivil = "";
-                if (radioBotonSoltero.isSelected()) {
-                    estadoCivil = "Soltero";
-                } else if (radioBotonCasado.isSelected()) {
-                    estadoCivil = "Casado";
-                } else if (radioBotonUnionLibre.isSelected()) {
-                    estadoCivil = "Union Libre";
-                } else if (radioBotonDivorciado.isSelected()) {
-                    estadoCivil = "Divorciado";
+            String correoIngresado = campoCorreoElectronico.getText();
+            if (!correoIngresado.contains("@") || !correoIngresado.endsWith(".com")) {
+                JOptionPane.showMessageDialog(this, "El correo electrónico debe contener '@' y terminar con '.com'.",
+                        "Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                int filaSeleccionada = ventanaPrincipal.getTablaContactos().getSelectedRow();
+                if (filaSeleccionada != 1) {
+                    DefaultTableModel modelo = (DefaultTableModel) ventanaPrincipal.getTablaContactos().getModel();
+                    String nombre = getCampoNombre();
+                    String apellido = getCampoApellido();
+                    String telefono = getCampoTelefono();
+                    String direccion = getCampoDireccion();
+                    String correoElectronico = getCampoCorreoElectronico();
+                    String icono = getCampoImagen();
+                    String estadoCivil = "";
+                    if (radioBotonSoltero.isSelected()) {
+                        estadoCivil = "Soltero";
+                    } else if (radioBotonCasado.isSelected()) {
+                        estadoCivil = "Casado";
+                    } else if (radioBotonUnionLibre.isSelected()) {
+                        estadoCivil = "Union Libre";
+                    } else if (radioBotonDivorciado.isSelected()) {
+                        estadoCivil = "Divorciado";
+                    }
+
+                    modelo.setValueAt(nombre, filaSeleccionada, 0);
+                    modelo.setValueAt(apellido, filaSeleccionada, 1);
+                    modelo.setValueAt(telefono, filaSeleccionada, 2);
+                    modelo.setValueAt(direccion, filaSeleccionada, 3);
+                    modelo.setValueAt(correoElectronico, filaSeleccionada, 4);
+                    modelo.setValueAt(estadoCivil, filaSeleccionada, 5);
+                    modelo.setValueAt(icono, filaSeleccionada, 6);
+
+                    campoNombre.setText("");
+                    campoApellido.setText("");
+                    campoTelefono.setText("");
+                    campoDireccion.setText("");
+                    campoCorreoElectronico.setText("");
+                    campoIcono.setText("");
+                    grupoBotones.clearSelection();
                 }
 
-                modelo.setValueAt(nombre, filaSeleccionada, 0);
-                modelo.setValueAt(apellido, filaSeleccionada, 1);
-                modelo.setValueAt(telefono, filaSeleccionada, 2);
-                modelo.setValueAt(direccion, filaSeleccionada, 3);
-                modelo.setValueAt(correoElectronico, filaSeleccionada, 4);
-                modelo.setValueAt(estadoCivil, filaSeleccionada, 5);
-                modelo.setValueAt(icono, filaSeleccionada, 6);
-
-                campoNombre.setText("");
-                campoApellido.setText("");
-                campoTelefono.setText("");
-                campoDireccion.setText("");
-                campoCorreoElectronico.setText("");
-                campoIcono.setText("");
-                grupoBotones.clearSelection();
             }
-
         }
-
-
     }//GEN-LAST:event_formKeyPressed
+
+    private void campoTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoTelefonoKeyTyped
+        char caracter = evt.getKeyChar(); //Se obtiene el caracter que se ingresa
+        if (!Character.isDigit(caracter)) { //Validar de que el carcacter que se ingresa no es digito
+            evt.consume(); //Se evita que se agrege al campo de texto si no es digito
+        }
+    }//GEN-LAST:event_campoTelefonoKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

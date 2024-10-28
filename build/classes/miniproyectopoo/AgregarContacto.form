@@ -34,11 +34,6 @@
                       <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
                       <Component id="campoDireccion" min="-2" pref="177" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
-                      <Component id="etiquetaCorreoElectronico" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="campoCorreoElectronico" min="-2" pref="183" max="-2" attributes="0"/>
-                  </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="etiquetaNombre" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -60,11 +55,6 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="botonGuardar" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                              <Component id="botonCancelar" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
                               <Component id="radioBotonSoltero" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="radioBotonCasado" min="-2" max="-2" attributes="0"/>
@@ -74,10 +64,20 @@
                               <Component id="radioBotonDivorciado" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="campoImagen" alignment="0" min="-2" pref="173" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="botonGuardar" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                              <Component id="botonCancelar" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="etiquetaCorreoElectronico" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="campoCorreoElectronico" min="-2" pref="183" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace pref="137" max="32767" attributes="0"/>
+              <EmptySpace pref="132" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -125,12 +125,12 @@
                   <Component id="etiquetaIcono" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="campoImagen" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="10" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="botonGuardar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="botonCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+              <EmptySpace pref="29" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -146,31 +146,49 @@
     </Component>
     <Component class="javax.swing.JLabel" name="etiquetaNombre">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="12" style="3"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="NOMBRE:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="etiquetaApellido">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="12" style="3"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="APELLIDO:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="etiquetaTelefono">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="12" style="3"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="TELEFONO:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="etiquetaCorreoElectronico">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="12" style="3"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="CORREO ELECTRONICO:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="etiquetaDireccion">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="12" style="3"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="DIRECCION:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="etiquetaEstadoCivil">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="12" style="3"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="ESTADO CIVIL:"/>
       </Properties>
     </Component>
@@ -203,6 +221,9 @@
     </Component>
     <Component class="javax.swing.JLabel" name="etiquetaIcono">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="12" style="3"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="ICONO:"/>
       </Properties>
     </Component>
@@ -211,6 +232,9 @@
     <Component class="javax.swing.JTextField" name="campoApellido">
     </Component>
     <Component class="javax.swing.JTextField" name="campoTelefono">
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="campoTelefonoKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="campoCorreoElectronico">
     </Component>

@@ -66,16 +66,22 @@ public class AgregarContacto extends javax.swing.JPanel {
         etiquetaTitulo.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
         etiquetaTitulo.setText("AGREGAR CONTACTO");
 
+        etiquetaNombre.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         etiquetaNombre.setText("NOMBRE:");
 
+        etiquetaApellido.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         etiquetaApellido.setText("APELLIDO:");
 
+        etiquetaTelefono.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         etiquetaTelefono.setText("TELEFONO:");
 
+        etiquetaCorreoElectronico.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         etiquetaCorreoElectronico.setText("CORREO ELECTRONICO:");
 
+        etiquetaDireccion.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         etiquetaDireccion.setText("DIRECCION:");
 
+        etiquetaEstadoCivil.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         etiquetaEstadoCivil.setText("ESTADO CIVIL:");
 
         botonGuardar.setText("GUARDAR");
@@ -102,7 +108,14 @@ public class AgregarContacto extends javax.swing.JPanel {
             }
         });
 
+        etiquetaIcono.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         etiquetaIcono.setText("ICONO:");
+
+        campoTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                campoTelefonoKeyTyped(evt);
+            }
+        });
 
         radioBotonSoltero.setText("SOLTERO");
         radioBotonSoltero.setFocusable(false);
@@ -134,10 +147,6 @@ public class AgregarContacto extends javax.swing.JPanel {
                         .addGap(51, 51, 51)
                         .addComponent(campoDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(etiquetaCorreoElectronico)
-                        .addGap(18, 18, 18)
-                        .addComponent(campoCorreoElectronico, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(etiquetaNombre)
                             .addComponent(etiquetaApellido)
@@ -154,10 +163,6 @@ public class AgregarContacto extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(botonGuardar)
-                                .addGap(41, 41, 41)
-                                .addComponent(botonCancelar))
-                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(radioBotonSoltero)
                                 .addGap(18, 18, 18)
                                 .addComponent(radioBotonCasado)
@@ -165,8 +170,16 @@ public class AgregarContacto extends javax.swing.JPanel {
                                 .addComponent(radioBotonUnionLibre)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(radioBotonDivorciado))
-                            .addComponent(campoImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(137, Short.MAX_VALUE))
+                            .addComponent(campoImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(botonGuardar)
+                                .addGap(37, 37, 37)
+                                .addComponent(botonCancelar))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(etiquetaCorreoElectronico)
+                        .addGap(18, 18, 18)
+                        .addComponent(campoCorreoElectronico, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(132, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -205,11 +218,11 @@ public class AgregarContacto extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(etiquetaIcono)
                     .addComponent(campoImagen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonGuardar)
                     .addComponent(botonCancelar))
-                .addGap(15, 15, 15))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -333,84 +346,11 @@ public class AgregarContacto extends javax.swing.JPanel {
     }//GEN-LAST:event_botonMenuActionPerformed
 
     private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
-        DefaultTableModel modelo = (DefaultTableModel) ventanaPrincipal.getTablaContactos().getModel();
-        String nombre = getCampoNombre();
-        String apellido = getCampoApellido();
-        String telefono = getCampoTelefono();
-        String direccion = getCampoDireccion();
-        String correoElectronico = getCampoCorreoElectronico();
-        String icono = getCampoImagen();
-        String estadoCivil = "";
-        if (radioBotonSoltero.isSelected()) {
-            estadoCivil = "Soltero";
-        } else if (radioBotonCasado.isSelected()) {
-            estadoCivil = "Casado";
-        } else if (radioBotonUnionLibre.isSelected()) {
-            estadoCivil = "Union Libre";
-        } else if (radioBotonDivorciado.isSelected()) {
-            estadoCivil = "Divorciado";
-        }
-
-        //RECORREMOS LA FILA DE TABLA, OBTENEMOS LOS VALORES EN LOS CAMPOS DE NOMBRE Y TELEFONO PARA VALIDAR QUE NO HAYAN CONTACTOS CON EL MISMO NOMBRE Y TELEFONO
-        for (int i = 0; i < modelo.getRowCount(); i++) {
-            String verificarNombre = modelo.getValueAt(i, 0).toString(); //Se tiene que pasar metodo toString para convertir a String el valor obtenido de nuestra tabla de contactos
-            String verificarTelefono = modelo.getValueAt(i, 2).toString();
-            if (verificarNombre.equals(nombre) && verificarTelefono.equals(telefono)) {
-                JOptionPane.showMessageDialog(panelContenedor2, "Ya se encuentra un contacto creado:  " + nombre + " : " + telefono);
-                return; //SI ENCUENTRA LO MISMO, SALE SIN AGREGAR EL CONTACTO.
-            }
-        }
-
-        Object[] nuevaFila = {nombre, apellido, telefono, direccion, correoElectronico, estadoCivil, icono};
-        modelo.addRow(nuevaFila);
-        campoNombre.setText("");
-        campoApellido.setText("");
-        campoTelefono.setText("");
-        campoDireccion.setText("");
-        campoCorreoElectronico.setText("");
-        campoImagen.setText("");
-        campoImagen.setText("");
-        grupoBotones.clearSelection();
-    }//GEN-LAST:event_botonGuardarActionPerformed
-
-    private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
-        //ALMACENO EN VARIABLES LOS CAMPOS DE TEXTO, ELIMIANDO ESPACIOS EN BLANCO
-        String nombre = campoNombre.getText().trim();
-        String apellido = campoApellido.getText().trim();
-        String telefono = campoTelefono.getText().trim();
-        String direccion = campoDireccion.getText().trim();
-        String correoElectronico = campoCorreoElectronico.getText().trim();
-        String icono = campoImagen.getText().trim();
-        //VALIDACION PARA TODOS LOS CAMPOS SI ESTAN VACIOS!
-        if (nombre.isEmpty() && apellido.isEmpty() && telefono.isEmpty() && direccion.isEmpty() && correoElectronico.isEmpty() && icono.isEmpty()) {
-            int confirmacion2 = JOptionPane.showConfirmDialog(panelContenedor2, "LOS CAMPOS ESTÁN VACÍOS, ¿QUIERES VOLVER AL MENÚ?", "CONFIRMACIÓN", JOptionPane.YES_NO_OPTION);
-            if (confirmacion2 == JOptionPane.YES_OPTION) {
-                panelMenu = new PanelMenu(ventanaPrincipal);
-                panelContenedor2.removeAll();
-                panelContenedor2.add(panelMenu);
-                panelContenedor2.revalidate();
-                panelContenedor2.repaint();
-            }
-        } //VALIDACION POR SI AL MENOS SE TIENE UN CAMPO CON TEXTO
-        else {
-            int confirmacion = JOptionPane.showConfirmDialog(panelContenedor2, "¿ESTÁS SEGURO DE CANCELAR?", "CONFIRMACIÓN", JOptionPane.YES_NO_OPTION);
-            if (confirmacion == JOptionPane.YES_OPTION) {
-                // Limpiar todos los campos
-                campoNombre.setText("");
-                campoApellido.setText("");
-                campoTelefono.setText("");
-                campoDireccion.setText("");
-                campoCorreoElectronico.setText("");
-                campoImagen.setText("");
-                grupoBotones.clearSelection();
-            } else {
-                JOptionPane.showMessageDialog(panelContenedor2, "¡Sigue agregando contactos!");
-            }
-        }
-    }//GEN-LAST:event_botonCancelarActionPerformed
-
-    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+        String correoIngresado = campoCorreoElectronico.getText();
+        if (!correoIngresado.contains("@") || !correoIngresado.endsWith(".com")) {
+            JOptionPane.showMessageDialog(this, "El correo electrónico debe contener '@' y terminar con '.com'.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
             DefaultTableModel modelo = (DefaultTableModel) ventanaPrincipal.getTablaContactos().getModel();
             String nombre = getCampoNombre();
             String apellido = getCampoApellido();
@@ -450,7 +390,100 @@ public class AgregarContacto extends javax.swing.JPanel {
             campoImagen.setText("");
             grupoBotones.clearSelection();
         }
+    }//GEN-LAST:event_botonGuardarActionPerformed
+
+    private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
+
+//ALMACENO EN VARIABLES LOS CAMPOS DE TEXTO, ELIMIANDO ESPACIOS EN BLANCO
+        String nombre = campoNombre.getText().trim();
+        String apellido = campoApellido.getText().trim();
+        String telefono = campoTelefono.getText().trim();
+        String direccion = campoDireccion.getText().trim();
+        String correoElectronico = campoCorreoElectronico.getText().trim();
+        String icono = campoImagen.getText().trim();
+        //VALIDACION PARA TODOS LOS CAMPOS SI ESTAN VACIOS!
+        if (nombre.isEmpty() && apellido.isEmpty() && telefono.isEmpty() && direccion.isEmpty() && correoElectronico.isEmpty() && icono.isEmpty()) {
+            int confirmacion2 = JOptionPane.showConfirmDialog(panelContenedor2, "LOS CAMPOS ESTÁN VACÍOS, ¿QUIERES VOLVER AL MENÚ?", "CONFIRMACIÓN", JOptionPane.YES_NO_OPTION);
+            if (confirmacion2 == JOptionPane.YES_OPTION) {
+                panelMenu = new PanelMenu(ventanaPrincipal);
+                panelContenedor2.removeAll();
+                panelContenedor2.add(panelMenu);
+                panelContenedor2.revalidate();
+                panelContenedor2.repaint();
+            }
+        } //VALIDACION POR SI AL MENOS SE TIENE UN CAMPO CON TEXTO
+        else {
+            int confirmacion = JOptionPane.showConfirmDialog(panelContenedor2, "¿ESTÁS SEGURO DE CANCELAR?", "CONFIRMACIÓN", JOptionPane.YES_NO_OPTION);
+            if (confirmacion == JOptionPane.YES_OPTION) {
+                // Limpiar todos los campos
+                campoNombre.setText("");
+                campoApellido.setText("");
+                campoTelefono.setText("");
+                campoDireccion.setText("");
+                campoCorreoElectronico.setText("");
+                campoImagen.setText("");
+                grupoBotones.clearSelection();
+            } else {
+                JOptionPane.showMessageDialog(panelContenedor2, "¡Sigue agregando contactos!");
+            }
+        }
+    }//GEN-LAST:event_botonCancelarActionPerformed
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            String correoIngresado = campoCorreoElectronico.getText();
+            if (!correoIngresado.contains("@") || !correoIngresado.endsWith(".com")) {
+                JOptionPane.showMessageDialog(this, "El correo electrónico debe contener '@' y terminar con '.com'.",
+                        "Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                DefaultTableModel modelo = (DefaultTableModel) ventanaPrincipal.getTablaContactos().getModel();
+                String nombre = getCampoNombre();
+                String apellido = getCampoApellido();
+                String telefono = getCampoTelefono();
+                String direccion = getCampoDireccion();
+                String correoElectronico = getCampoCorreoElectronico();
+                String icono = getCampoImagen();
+                String estadoCivil = "";
+                if (radioBotonSoltero.isSelected()) {
+                    estadoCivil = "Soltero";
+                } else if (radioBotonCasado.isSelected()) {
+                    estadoCivil = "Casado";
+                } else if (radioBotonUnionLibre.isSelected()) {
+                    estadoCivil = "Union Libre";
+                } else if (radioBotonDivorciado.isSelected()) {
+                    estadoCivil = "Divorciado";
+                }
+
+                //RECORREMOS LA FILA DE TABLA, OBTENEMOS LOS VALORES EN LOS CAMPOS DE NOMBRE Y TELEFONO PARA VALIDAR QUE NO HAYAN CONTACTOS CON EL MISMO NOMBRE Y TELEFONO
+                for (int i = 0; i < modelo.getRowCount(); i++) {
+                    String verificarNombre = modelo.getValueAt(i, 0).toString(); //Se tiene que pasar metodo toString para convertir a String el valor obtenido de nuestra tabla de contactos
+                    String verificarTelefono = modelo.getValueAt(i, 2).toString();
+                    if (verificarNombre.equals(nombre) && verificarTelefono.equals(telefono)) {
+                        JOptionPane.showMessageDialog(panelContenedor2, "Ya se encuentra un contacto creado:  " + nombre + " : " + telefono);
+                        return; //SI ENCUENTRA LO MISMO, SALE SIN AGREGAR EL CONTACTO.
+                    }
+                }
+
+                Object[] nuevaFila = {nombre, apellido, telefono, direccion, correoElectronico, estadoCivil, icono};
+                modelo.addRow(nuevaFila);
+                campoNombre.setText("");
+                campoApellido.setText("");
+                campoTelefono.setText("");
+                campoDireccion.setText("");
+                campoCorreoElectronico.setText("");
+                campoImagen.setText("");
+                campoImagen.setText("");
+                grupoBotones.clearSelection();
+            }
+        }
     }//GEN-LAST:event_formKeyPressed
+
+    private void campoTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoTelefonoKeyTyped
+        char caracter = evt.getKeyChar(); //Se obtiene el caracter que se ingresa
+        if (!Character.isDigit(caracter)) { //Validar de que el carcacter que se ingresa no es digito
+            evt.consume(); //Se evita que se agrege al campo de texto si no es digito
+        }
+    }//GEN-LAST:event_campoTelefonoKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
