@@ -5,6 +5,7 @@
 package miniproyectopoo;
 
 import java.awt.BorderLayout;
+import java.awt.event.KeyEvent;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -17,14 +18,17 @@ public class PanelMenu extends javax.swing.JPanel {
     private AgregarContacto agregarContacto;
     private DefaultTableModel modelo;
     private EditarContacto editarContacto;
+    private EliminarContacto eliminarContacto;
 
     /**
      * Creates new form PanelMenu
      */
     public PanelMenu(VentanaPrincipal ventanaPrincipal) {
         this.ventanaPrincipal = ventanaPrincipal;
-
         initComponents();
+        setFocusable(true);
+        requestFocusInWindow();
+        
     }
 
     /**
@@ -45,12 +49,13 @@ public class PanelMenu extends javax.swing.JPanel {
 
         etiquetaTitulo1.setFont(new java.awt.Font("Arial Black", 3, 18)); // NOI18N
         etiquetaTitulo1.setText("GESTOR DE CONTACTOS");
+        etiquetaTitulo1.setFocusable(false);
 
         etiquetaMenu2.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
         etiquetaMenu2.setText("MENU PRINCIPAL");
+        etiquetaMenu2.setFocusable(false);
 
         botonAgregarContacto.setText("AGREGAR");
-        botonAgregarContacto.setFocusable(false);
         botonAgregarContacto.setPreferredSize(new java.awt.Dimension(100, 30));
         botonAgregarContacto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -59,7 +64,6 @@ public class PanelMenu extends javax.swing.JPanel {
         });
 
         botonEditarContacto.setText("EDITAR");
-        botonEditarContacto.setFocusable(false);
         botonEditarContacto.setPreferredSize(new java.awt.Dimension(100, 30));
         botonEditarContacto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -68,7 +72,6 @@ public class PanelMenu extends javax.swing.JPanel {
         });
 
         botonBuscarContacto.setText("BUSCAR");
-        botonBuscarContacto.setFocusable(false);
         botonBuscarContacto.setPreferredSize(new java.awt.Dimension(100, 30));
         botonBuscarContacto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -77,7 +80,6 @@ public class PanelMenu extends javax.swing.JPanel {
         });
 
         botonEliminarContacto.setText("ELIMINAR");
-        botonEliminarContacto.setFocusable(false);
         botonEliminarContacto.setMinimumSize(new java.awt.Dimension(100, 30));
         botonEliminarContacto.setPreferredSize(new java.awt.Dimension(100, 30));
         botonEliminarContacto.addActionListener(new java.awt.event.ActionListener() {

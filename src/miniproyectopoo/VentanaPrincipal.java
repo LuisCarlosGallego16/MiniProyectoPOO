@@ -7,6 +7,7 @@ package miniproyectopoo;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
@@ -37,6 +38,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         PanelMenu panelMenu = new PanelMenu(this);
         cambiarPanelContenedor2(panelMenu);
+
+        PanelContenedor1.setFocusable(true); // Asegúrate de que pueda recibir foco
+
+        PanelContenedor2.setFocusable(true); // Asegúrate de que pueda recibir foco
+
+        // Al final, solicita que el JFrame tenga el foco
+        setFocusable(true);
+        requestFocusInWindow();
 
     }
 
@@ -91,6 +100,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         menuItemAtajos = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout PanelContenedor1Layout = new javax.swing.GroupLayout(PanelContenedor1);
         PanelContenedor1.setLayout(PanelContenedor1Layout);
@@ -189,6 +203,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         if (agregarContacto == null) {
             agregarContacto = new AgregarContacto(this, getPanelContenedor2(), modelo);
         }
+
         cambiarPanelContenedor2(agregarContacto);
     }//GEN-LAST:event_menuItemNuevoActionPerformed
 
@@ -203,7 +218,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void menuItemGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemGuardarActionPerformed
         DefaultTableModel modelo = (DefaultTableModel) getTablaContactos().getModel();
         String nombre = agregarContacto.getCampoNombre();
-        System.out.println("NOMBRE" + nombre);
         String apellido = agregarContacto.getCampoApellido();
         String telefono = agregarContacto.getCampoTelefono();
         String direccion = agregarContacto.getCampoDireccion();
@@ -219,6 +233,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         } else if (agregarContacto.getRadioBotonDivorciado().isSelected()) {
             estadoCivil = "Divorciado";
         }
+
         Object[] nuevaFila = {nombre, apellido, telefono, direccion, correoElectronico, estadoCivil, icono};
         modelo.addRow(nuevaFila);
 
@@ -250,6 +265,25 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 + "TECLA ENTER: Guardar un nuevo contacto o cambios realizados a un contacto";
         JOptionPane.showMessageDialog(this, atajos, "ATAJOS", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_menuItemAtajosActionPerformed
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_E) {
+            editarContacto = new EditarContacto(this, this.getPanelContenedor2());
+            cambiarPanelContenedor2(this.getEditarContacto());
+        }
+        if (evt.getKeyCode() == KeyEvent.VK_N) {
+            if (this.getAgregarContacto() == null) {
+                AgregarContacto agregarContacto2 = new AgregarContacto(this, this.getPanelContenedor2(), modelo);
+                this.setAgregarContacto(agregarContacto2);
+            }
+            this.cambiarPanelContenedor2(this.getAgregarContacto());
+        }
+        if (evt.getKeyCode() == KeyEvent.VK_D) {
+            EliminarContacto eliminarContacto = new EliminarContacto(this, this.getPanelContenedor2());
+            this.cambiarPanelContenedor2(eliminarContacto);;
+        }
+
+    }//GEN-LAST:event_formKeyPressed
 
     /**
      * @param args the command line arguments

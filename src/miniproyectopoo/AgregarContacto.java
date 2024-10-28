@@ -19,7 +19,7 @@ public class AgregarContacto extends javax.swing.JPanel {
     private PanelMenu panelMenu;
 
     public AgregarContacto(VentanaPrincipal ventanaPrincipal, JPanel panelContenedor2, DefaultTableModel modelo) {
-       initComponents();
+        initComponents();
         this.ventanaPrincipal = ventanaPrincipal;
         this.panelContenedor2 = panelContenedor2;
         this.modelo = modelo;
@@ -212,9 +212,8 @@ public class AgregarContacto extends javax.swing.JPanel {
                 .addGap(15, 15, 15))
         );
     }// </editor-fold>//GEN-END:initComponents
-  
-    //GETTERS PARA OBTENER LA INFORMACION DE LOS CAMPOS 
 
+    //GETTERS PARA OBTENER LA INFORMACION DE LOS CAMPOS 
     public String getCampoApellido() {
         return campoApellido.getText();
     }
@@ -351,6 +350,17 @@ public class AgregarContacto extends javax.swing.JPanel {
         } else if (radioBotonDivorciado.isSelected()) {
             estadoCivil = "Divorciado";
         }
+
+        //RECORREMOS LA FILA DE TABLA, OBTENEMOS LOS VALORES EN LOS CAMPOS DE NOMBRE Y TELEFONO PARA VALIDAR QUE NO HAYAN CONTACTOS CON EL MISMO NOMBRE Y TELEFONO
+        for (int i = 0; i < modelo.getRowCount(); i++) {
+            String verificarNombre = modelo.getValueAt(i, 0).toString(); //Se tiene que pasar metodo toString para convertir a String el valor obtenido de nuestra tabla de contactos
+            String verificarTelefono = modelo.getValueAt(i, 2).toString();
+            if (verificarNombre.equals(nombre) && verificarTelefono.equals(telefono)) {
+                JOptionPane.showMessageDialog(panelContenedor2, "Ya se encuentra un contacto creado:  " + nombre + " : " + telefono);
+                return; //SI ENCUENTRA LO MISMO, SALE SIN AGREGAR EL CONTACTO.
+            }
+        }
+
         Object[] nuevaFila = {nombre, apellido, telefono, direccion, correoElectronico, estadoCivil, icono};
         modelo.addRow(nuevaFila);
         campoNombre.setText("");
@@ -381,8 +391,7 @@ public class AgregarContacto extends javax.swing.JPanel {
                 panelContenedor2.revalidate();
                 panelContenedor2.repaint();
             }
-        } 
-        //VALIDACION POR SI AL MENOS SE TIENE UN CAMPO CON TEXTO
+        } //VALIDACION POR SI AL MENOS SE TIENE UN CAMPO CON TEXTO
         else {
             int confirmacion = JOptionPane.showConfirmDialog(panelContenedor2, "¿ESTÁS SEGURO DE CANCELAR?", "CONFIRMACIÓN", JOptionPane.YES_NO_OPTION);
             if (confirmacion == JOptionPane.YES_OPTION) {
@@ -419,6 +428,17 @@ public class AgregarContacto extends javax.swing.JPanel {
             } else if (radioBotonDivorciado.isSelected()) {
                 estadoCivil = "Divorciado";
             }
+
+            //RECORREMOS LA FILA DE TABLA, OBTENEMOS LOS VALORES EN LOS CAMPOS DE NOMBRE Y TELEFONO PARA VALIDAR QUE NO HAYAN CONTACTOS CON EL MISMO NOMBRE Y TELEFONO
+            for (int i = 0; i < modelo.getRowCount(); i++) {
+                String verificarNombre = modelo.getValueAt(i, 0).toString(); //Se tiene que pasar metodo toString para convertir a String el valor obtenido de nuestra tabla de contactos
+                String verificarTelefono = modelo.getValueAt(i, 2).toString();
+                if (verificarNombre.equals(nombre) && verificarTelefono.equals(telefono)) {
+                    JOptionPane.showMessageDialog(panelContenedor2, "Ya se encuentra un contacto creado:  " + nombre + " : " + telefono);
+                    return; //SI ENCUENTRA LO MISMO, SALE SIN AGREGAR EL CONTACTO.
+                }
+            }
+
             Object[] nuevaFila = {nombre, apellido, telefono, direccion, correoElectronico, estadoCivil, icono};
             modelo.addRow(nuevaFila);
             campoNombre.setText("");

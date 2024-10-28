@@ -1,20 +1,20 @@
-
 package miniproyectopoo;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
 public class EliminarContacto extends javax.swing.JPanel {
+
     private VentanaPrincipal ventanaPrincipal;
     private JPanel panelContenedor2;
     private TablaContactos tablaContactos;
 
-    public EliminarContacto(VentanaPrincipal ventanaPrincipal ,JPanel panelContenedor2 ) {
+    public EliminarContacto(VentanaPrincipal ventanaPrincipal, JPanel panelContenedor2) {
         this.ventanaPrincipal = ventanaPrincipal;
         this.panelContenedor2 = panelContenedor2;
         initComponents();
     }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -71,20 +71,25 @@ public class EliminarContacto extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         PanelMenu panelMenu = new PanelMenu(ventanaPrincipal);
-        panelContenedor2.removeAll(); 
-        panelContenedor2.add(panelMenu); 
-        panelContenedor2.revalidate(); 
-        panelContenedor2.repaint(); 
+        panelContenedor2.removeAll();
+        panelContenedor2.add(panelMenu);
+        panelContenedor2.revalidate();
+        panelContenedor2.repaint();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void botonEliminarContactoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarContactoActionPerformed
-       DefaultTableModel modelo = (DefaultTableModel) ventanaPrincipal.getTablaContactos().getModel();
-       int filaSeleccionada = ventanaPrincipal.getTablaContactos().getSelectedRow();
-       if(filaSeleccionada !=-1){
-           modelo.removeRow(filaSeleccionada);
-           
-       }
-       
+        DefaultTableModel modelo = (DefaultTableModel) ventanaPrincipal.getTablaContactos().getModel();
+        int confirmacion = JOptionPane.showConfirmDialog(panelContenedor2, "ESTAS SEGURO DE ELIMINAR EL CONTACTO?", "CONFIRMACION", JOptionPane.YES_NO_OPTION);
+        if (confirmacion == JOptionPane.YES_OPTION) {
+            int filaSeleccionada = ventanaPrincipal.getTablaContactos().getSelectedRow();
+            if (filaSeleccionada != -1) {
+                modelo.removeRow(filaSeleccionada);
+            } 
+            }else {
+                JOptionPane.showMessageDialog(panelContenedor2, "CANCELADO");
+
+        }
+
     }//GEN-LAST:event_botonEliminarContactoActionPerformed
 
 

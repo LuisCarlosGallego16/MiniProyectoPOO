@@ -373,8 +373,10 @@ public class EditarContacto extends javax.swing.JPanel {
     private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
         int filaSeleccionada = ventanaPrincipal.getTablaContactos().getSelectedRow();
         if (filaSeleccionada != -1) {
-            DefaultTableModel modelo = (DefaultTableModel) ventanaPrincipal.getTablaContactos().getModel();
-            String nombre = getCampoNombre();
+            int confirmacion = JOptionPane.showConfirmDialog(panelContenedor2, "ESTAS SEGURO DE EDITAR EL CONTACTO","CONFIRMACION", JOptionPane.YES_NO_OPTION);
+           if(confirmacion == JOptionPane.YES_OPTION){
+               DefaultTableModel modelo = (DefaultTableModel) ventanaPrincipal.getTablaContactos().getModel();
+                           String nombre = getCampoNombre();
             String apellido = getCampoApellido();
             String telefono = getCampoTelefono();
             String direccion = getCampoDireccion();
@@ -405,8 +407,12 @@ public class EditarContacto extends javax.swing.JPanel {
             campoCorreoElectronico.setText("");
             campoIcono.setText("");
             grupoBotones.clearSelection();
+           }else{
+               JOptionPane.showMessageDialog(panelContenedor2, "HAZ CANCELADO");
+           }
+
         }else{
-            System.out.println("elije un contacto");
+            JOptionPane.showMessageDialog(panelContenedor2, "ELIGE UN CONTACTO");
         }
 
 

@@ -1,4 +1,3 @@
-
 package miniproyectopoo;
 
 import javax.swing.JPanel;
@@ -25,6 +24,7 @@ public class TablaContactos extends javax.swing.JPanel {
     public JTable getTabla() {
         return tablaContactos;
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -70,7 +70,6 @@ public class TablaContactos extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tablaContactosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaContactosMouseClicked
-
         int filaSeleccionada = tablaContactos.getSelectedRow();
         if (filaSeleccionada != -1) {
             DefaultTableModel modelo = (DefaultTableModel) tablaContactos.getModel();
@@ -91,7 +90,7 @@ public class TablaContactos extends javax.swing.JPanel {
             ventanaPrincipal.getEditarContacto().setCampoCorreoElectronico(correoElectronico);
             ventanaPrincipal.getEditarContacto().setCampoIcono(icono);
             ventanaPrincipal.getEditarContacto().setEstadoCivil(estadoCivil);
-                    }
+        }
     }//GEN-LAST:event_tablaContactosMouseClicked
 
 
